@@ -1,12 +1,13 @@
 import React from "react";
+import { graphql } from "gatsby";
 import { 
     LayoutComponent,
     TitleComponent
  } from "Components";
 
-export default function Typography() {
+export default function Typography({ data }: any) {
     return (
-        <LayoutComponent seo={{tags: []}}>
+        <LayoutComponent seo={data.page.seoMetaTags}>
             <React.Fragment>
                 <TitleComponent balise="h1" text="Titre de niveau 1" />
                 <TitleComponent balise="h2" text="Titre de niveau 2" />
@@ -21,3 +22,13 @@ export default function Typography() {
         </LayoutComponent>
     );
 };
+
+export const query = graphql`
+    query TypographyPage {
+        page: datoCmsHomePage {
+            seoMetaTags {
+                tags
+            }
+        }
+    }
+`;

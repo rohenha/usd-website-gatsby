@@ -1,11 +1,14 @@
 import React from "react";
 import { graphql } from "gatsby";
+import { LayoutComponent } from "Components";
 
 export default function Team({ data }: any) {
   return (
-    <React.Fragment>
-      <p>Team : {JSON.stringify(data.team, null, 2)}</p>
-    </React.Fragment>
+    <LayoutComponent seo={data.page.seoMetaTags}>
+      <React.Fragment>
+        <p>Team : {JSON.stringify(data.team, null, 2)}</p>
+      </React.Fragment>
+    </LayoutComponent>
   )
 }
 
@@ -23,9 +26,8 @@ export const query = graphql`
             managers {
                 ...managerFragment
             }
-            seo {
-              title
-              description
+            seoMetaTags {
+              tags
             }
         }
     }
