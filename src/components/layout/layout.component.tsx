@@ -42,19 +42,6 @@ export function LayoutComponent({ children, seo }: ILayoutComponentProps) {
                     }
                 `}
                 render={data => {
-                    const teamsArray: any[] = [];
-                    data.categoriesOrder.categories.map(function(category: ICategory) {
-                        const teams = data.teams.nodes.filter((team: ITeam) => {
-                            return team.category.id == category.id;
-                        });
-                        teams.sort(function (a: ITeam, b: ITeam) {
-                            return a.team > b.team;
-                        });
-                        teams.map((team: ITeam) => {
-                            teamsArray.push(team);
-                        })
-                    });
-                    data.teams = teamsArray;
                     return (
                         <React.Fragment>
                             <HelmetDatoCms seo={seo} favicon={data.site.faviconMetaTags} />

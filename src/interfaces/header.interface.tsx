@@ -1,10 +1,12 @@
-import { ICategory, ITeamMenu } from 'Interfaces';
+import { ICategory, ITeam } from 'Interfaces';
 export interface IHeaderComponentProps {
     data: {
         categoriesOrder: {
             categories: ICategory[]
         },
-        teams: ITeamMenu[]
+        teams: {
+            nodes: ITeam[]
+        }
     }
 }
 

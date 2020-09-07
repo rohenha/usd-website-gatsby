@@ -1,10 +1,31 @@
 import * as React from 'react';
 import { Link } from "gatsby"
-import { IHeaderComponentProps, ITeamMenu } from "Interfaces";
+import { ICategory, IHeaderComponentProps, ITeam, ITeamMenu } from "Interfaces";
 
 import "./header.component.sass";
 
 export function HeaderComponent({ data }: IHeaderComponentProps) {
+    const setTeamsByCategories = () => {
+        return data.categoriesOrder.categories.map(getTeamsByCategories)
+    };
+
+    const getTeamsByCategories = (category: ICategory) => {
+        const teams = data.teams.nodes.filter((team: ITeamMenu) => {
+            return team.category.id == category.id;
+        });
+        teams.sort((a: ITeam, b: ITeam) => {
+            return a.team.localeCompare(b.team);
+        });
+        return teams.map((team: ITeam, index: number) => {
+            return (
+                <li key={index}>
+                    <Link className="text_menu" to={"/equipes/" + team.slug}>
+                        {team.name}
+                    </Link>
+                </li>
+            );
+        })
+    };
     return (
         <header>
             <div className="container">
@@ -14,13 +35,7 @@ export function HeaderComponent({ data }: IHeaderComponentProps) {
                         <li>
                             <Link className="text_menu" to="/equipes">Équipes</Link>
                             <ul>
-                                {data.teams.map((team: ITeamMenu, index: number) => (
-                                    <li key={index}>
-                                        <Link className="text_menu" to={"/equipes/" + team.slug}>
-                                            {team.name}
-                                        </Link>
-                                    </li>
-                                ))}
+                                {setTeamsByCategories()}
                             </ul>
                         </li>
                         <li><Link className="text_menu" to="/medias">Médias</Link></li>
