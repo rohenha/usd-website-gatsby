@@ -4,7 +4,7 @@ import { LayoutComponent } from "Components";
 
 export default function Product({ data }: any) {
   return (
-    <LayoutComponent seo={data.page.seoMetaTags}>
+    <LayoutComponent seo={data.product.seoMetaTags}>
       <React.Fragment>
         <p>Team : {JSON.stringify(data.product, null, 2)}</p>
       </React.Fragment>
