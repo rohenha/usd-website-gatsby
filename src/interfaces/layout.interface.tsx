@@ -28,7 +28,9 @@ export interface IHeaderComponentProps {
         },
         logo: {
             sizes: {
-                src: string
+                srcSet: string,
+                src: string,
+                sizes: string
             }
         },
         site: {
@@ -39,6 +41,7 @@ export interface IHeaderComponentProps {
 }
 
 export interface IHeaderComponentState {
+    navState: boolean
 }
 
 export interface IFooterComponentProps {
@@ -51,7 +54,9 @@ export interface IFooterComponentProps {
         },
         logo: {
             sizes: {
-                src: string
+                srcSet: string,
+                src: string,
+                sizes: string
             }
         },
         site: {

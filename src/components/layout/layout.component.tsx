@@ -38,8 +38,10 @@ export function LayoutComponent({ children, seo }: ILayoutComponentProps) {
                             }
                         }
                         logo: datoCmsAsset(basename: {eq: "logo"}) {
-                            sizes(imgixParams: {w: "300", fit: "clip", dpr: 1, auto: "compress"}) {
+                            sizes(sizes: "(max-width: 768px) 60px, 60px", imgixParams: {fit: "clip", auto: "compress"}) {
+                                srcSet
                                 src
+                                sizes
                             }
                         }
                     }
