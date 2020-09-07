@@ -1,0 +1,19 @@
+#footer
+    background-color: $color-1
+
+    h3
+        @supports (-webkit-text-stroke: 1px $color-white)
+            -webkit-text-fill-color: rgba($color-white, 0)
+            -webkit-text-stroke: 1px $color-white
+            color: rgba($color-white, 0)
+
+    a
+        color: $color-white
+
+
+    .footer
+        &__more
+            p,
+            a
+                color: $color-white
+                font-weight: normal
