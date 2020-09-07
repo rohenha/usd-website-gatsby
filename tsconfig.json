@@ -28,7 +28,8 @@
     "paths": {
       "Interfaces": ["./src/interfaces/index.tsx"],
       "Components": ["./src/components/index.tsx"],
-      "Fragments": ["./src/fragments/index.tsx"]
+      "Fragments": ["./src/fragments/index.tsx"],
+      "Services": ["./src/services/index.tsx"]
     }
   },
   "exclude": [

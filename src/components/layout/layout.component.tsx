@@ -1,8 +1,8 @@
-import { HeaderComponent } from "Components";
+import { FooterComponent, HeaderComponent } from "Components";
 import * as React from "react";
 import { StaticQuery, graphql } from "gatsby";
 import { HelmetDatoCms } from "gatsby-source-datocms";
-import { ICategory, ILayoutComponentProps, ITeam } from "Interfaces";
+import { ILayoutComponentProps } from "Interfaces";
 
 import "../../styles/site.sass";
 
@@ -34,10 +34,13 @@ export function LayoutComponent({ children, seo }: ILayoutComponentProps) {
                             }
                             globalSeo {
                                 siteName
+                                facebookPageUrl
                             }
                         }
                         logo: datoCmsAsset(basename: {eq: "logo"}) {
-                            url
+                            sizes(imgixParams: {w: "300", fit: "clip", dpr: 1, auto: "compress"}) {
+                                src
+                            }
                         }
                     }
                 `}
@@ -49,6 +52,7 @@ export function LayoutComponent({ children, seo }: ILayoutComponentProps) {
                             <main>
                                 {children}
                             </main>
+                            <FooterComponent data={data} />
                         </React.Fragment>
                     );
                 }}
