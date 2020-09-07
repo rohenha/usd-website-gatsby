@@ -1,4 +1,4 @@
-#footer
+.footer
     background-color: $color-1
 
     h3
@@ -10,10 +10,59 @@
     a
         color: $color-white
 
+    &__nav
+        padding-bottom: 70px
+        padding-top: 70px
 
-    .footer
+        nav
+            margin-bottom: 30px
+
+        ul
+            float: left
+            width: 50%
+            li
+                &:not(:last-child)
+                    margin-bottom: 15px
+
+    &__more
+        p,
+        a
+            color: $color-white
+            font-weight: normal
+
+    &__socials
+        ul
+            width: 100%
+            li
+                display: inline-block
+                &:not(:last-child)
+                    margin-right: 25px
+
+        img
+            height: 50px
+
+    &__more
+        background-color: $color-2
+        padding: 15px 0
+        width: 100%
+
+    @include media-breakpoint-up(md)
+        &__nav
+            nav
+                margin-bottom: 0
+            ul
+                display: block
+                width: 100%
+                &:not(:last-child)
+                    margin-bottom: 15px
+                li
+                    display: inline-block
+                    &:not(:last-child)
+                        margin-bottom: 0
+                        margin-right: 15px
+
+        &__socials
+            text-align: right
+
         &__more
-            p,
-            a
-                color: $color-white
-                font-weight: normal
+            text-align: right

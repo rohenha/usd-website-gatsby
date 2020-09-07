@@ -1,4 +1,4 @@
-#header
+.header
     background-color: $color-1
     left: 0
     padding: 20px 0
@@ -8,6 +8,7 @@
     z-index: 10
 
     h3
+        display: inline-block
         @supports (-webkit-text-stroke: 1px $color-white)
             -webkit-text-fill-color: rgba($color-white, 0)
             -webkit-text-stroke: 1px $color-white
@@ -16,7 +17,7 @@
     a
         color: $color-white
 
-    nav
+    &__nav
         background-color: $color-1
         height: 100vh
         left: 0
@@ -28,60 +29,78 @@
         width: 100vw
         z-index: 10
 
+        &--open
+            transform: translate(0, 0)
+
     .container
         align-items: center
         display: flex
         flex-flow: row wrap
         justify-content: space-between
 
-    .header
-        &__list
-            align-items: center
-            display: flex
-            flex-flow: column wrap
-            height: 100%
-            justify-content: center
+    &__list
+        display: flex
+        flex-flow: column wrap
+        height: 100%
+        justify-content: flex-start
 
-            &--open
-                transform: translate(0, 0)
+        li
+            text-align: left
 
-            li
-                text-align: center
+            &:not(:last-child)
+                margin-bottom: 17px
 
+                &.header__title
+                    margin-bottom: 60px
+
+            a
+                display: inline-block
                 &:not(:last-child)
-                    margin-bottom: 25px
+                    margin-bottom: 10px
 
-                    &.header__title
-                        margin-bottom: 60px
+        > li
+            margin-bottom: 40px
+            position: relative
+            width: 100%
 
-                a
-                    display: inline-block
-                    &:not(:last-child)
-                        margin-bottom: 20px
+            a
+                padding: 0 30px
 
-            > li
-                margin-bottom: 40px
-                position: relative
-                width: 100%
+            &.header__el_left
+                + li
+                    a
+                        color: $color-3
 
-                a
-                    padding: 0 30px
+    &__logo
+        display: inline-block
+        margin-bottom: 0
 
-                &.header__el_left
-                    + li
-                        a
-                            color: $color-3
+    &__dropdown
+        background-color: $color-2
+        // height: 150px
+        padding: 20px 0
+        li
+            // display: inline-block
+            // width: calc(100% / 3)
 
-        &__logo
-            display: inline-block
+    &__title
+        align-items: center
+        display: flex
+        flex-flow: row wrap
+        justify-content: space-between
+        padding: 0 15px
+
+        h3
             margin-bottom: 0
 
-        &__dropdown
-            background-color: $color-2
-            padding: 20px 0
-
-        &__burger
-            color: $color-white
+    &__burger
+        background-color: inherit
+        border: 1px solid red
+        color: $color-white
+        height: 30px
+        padding: 0
+        position: relative
+        width: 30px
 
     @include media-breakpoint-up(md)
         padding: 30px 0
@@ -98,70 +117,69 @@
         .container
             display: block
 
-        .header
-            &__logo
-                left: 50%
-                position: absolute
-                top: 50%
-                transform: translate(-50%, -50%)
+        &__logo
+            left: 50%
+            position: absolute
+            top: 50%
+            transform: translate(-50%, -50%)
 
-            &__list
-                align-items: flex-start
-                flex-flow: row wrap
-                height: auto
-                justify-content: flex-start
+        &__list
+            align-items: flex-start
+            flex-flow: row wrap
+            height: auto
+            justify-content: flex-start
 
-                li
-                    text-align: left
+            li
+                text-align: left
 
-                    &:not(:last-child)
-                        margin-bottom: 0
-
-                    a:not(:last-child)
-                        margin-bottom: 0
-
-                > li
+                &:not(:last-child)
                     margin-bottom: 0
+
+                a:not(:last-child)
+                    margin-bottom: 0
+
+            > li
+                margin-bottom: 0
+                padding: 0
+                width: auto
+
+                &:not(:last-child),
+                &:not(.header__el_left)
+                    margin-right: 20px
+
+                &.header__el_left
+                    margin-right: auto
+                a
                     padding: 0
-                    width: auto
+                    position: relative
+                    z-index: 2
 
-                    &:not(:last-child),
-                    &:not(.header__el_left)
-                        margin-right: 20px
-
-                    &.header__el_left
-                        margin-right: auto
-                    a
-                        padding: 0
-                        position: relative
-                        z-index: 2
-
-                    &:hover
-                        .header__dropdown
-                            opacity: 1
-                            transform: translate(0, 0)
-                            transition: visibility .1s ease-in-out, opacity .2s ease-in-out .1s, transform .2s ease-in-out .1s
-                            visibility: visible
+                &:hover
+                    .header__dropdown
+                        opacity: 1
+                        transform: translate(0, 0)
+                        transition: visibility .1s ease-in-out, opacity .2s ease-in-out .1s, transform .2s ease-in-out .1s
+                        visibility: visible
 
 
-            &__dropdown
-                background-color: $color-1
-                left: -10px
-                opacity: 0
-                padding: 30px 10px 10px
-                position: absolute
-                top: 100%
-                transform: translate(0, -10px)
-                transition: visibility .1s ease-in-out .2s, opacity .2s ease-in-out, transform .2s ease-in-out
-                visibility: hidden
-                width: 150px
-                z-index: -1
+        &__dropdown
+            background-color: $color-1
+            left: -10px
+            opacity: 0
+            padding: 30px 10px 10px
+            position: absolute
+            top: 100%
+            transform: translate(0, -10px)
+            transition: visibility .1s ease-in-out .2s, opacity .2s ease-in-out, transform .2s ease-in-out
+            visibility: hidden
+            width: 150px
+            z-index: -1
 
-                li
-                    &:not(:last-child)
-                        margin-bottom: 10px
+            li
+                &:not(:last-child)
+                    margin-bottom: 10px
 
-            &__mobile
-                display: none
+        &__mobile
+            display: none
 
             
