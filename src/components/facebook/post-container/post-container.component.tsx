@@ -1,11 +1,10 @@
 import * as React from 'react';
-import {
-    getFacebookContent
-} from "Services";
-import {
-    FacebookPostComponent
-} from "Components";
+import { getFacebookContent } from "Services";
+import { ButtonComponent, FacebookPostComponent } from "Components";
 import { IFacebookPostsContainerProps, IFacebookPostsContainerState } from "Interfaces";
+// import masonry from "masonry-layout";
+
+import "./post-container.component.sass";
 
 export class FacebookPostsContainerComponent extends React.Component<IFacebookPostsContainerProps, IFacebookPostsContainerState> {
     private offset: number = 0;
@@ -18,7 +17,7 @@ export class FacebookPostsContainerComponent extends React.Component<IFacebookPo
     };
 
     private getPosts = () => {
-        getFacebookContent("posts.limit(" + this.nbrPosts + ").offset(" + this.offset + "){message,full_picture,permalink_url}").then((res: any) => {
+        getFacebookContent("posts.limit(" + this.nbrPosts + ").offset(" + this.offset + "){message,full_picture,permalink_url,created_time}").then((res: any) => {
             this.setState({
                 posts: [...this.state.posts, ...res.posts.data]
             });
@@ -34,12 +33,16 @@ export class FacebookPostsContainerComponent extends React.Component<IFacebookPo
 
     public render(): React.ReactElement<any> {
         return (
-            <div className="fb_container">
-                {this.state.posts.map((post: any) => (
-                    <FacebookPostComponent post={post} key={post.id} />
-                ))}
-                <button onClick={this.addMorePosts}>Charger plus de posts</button>
-            </div>
+            <React.Fragment>
+                <div className="fb_container">
+                    {this.state.posts.map((post: any) => (
+                        <FacebookPostComponent post={post} key={post.id} />
+                    ))}
+                </div>
+                <div className="fb_nav">
+                    <ButtonComponent className="" link="" type={1} event={this.addMorePosts}><React.Fragment>Plus de d'articles</React.Fragment></ButtonComponent>
+                </div>
+            </React.Fragment>
         );
     }
 }

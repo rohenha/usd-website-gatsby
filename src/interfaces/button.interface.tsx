@@ -1,9 +1,7 @@
 export interface IButtonProps {
-    component: {
-        name: string,
-        href: string | null,
-        target: string | null
-    },
+    link: string,
+    className: string,
     type: number,
+    event: () => void | null,
     children: React.ReactElement<any>
 }

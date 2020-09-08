@@ -1,0 +1,49 @@
+.fb_post
+    background-color: $color-6
+    border: 1px solid $color-4
+    border-radius: 5px
+    display: inline-block
+    margin-bottom: 30px
+    overflow: hidden
+    padding: 20px 20px 50px
+    position: relative
+    width: 100%
+
+    &--image
+        padding: 0 0 50px
+
+        img
+            margin-bottom: 20px
+
+        h4,
+        p
+            padding: 0 20px
+
+    &--withoutText
+        padding-bottom: 30px
+        img
+            margin-bottom: 0
+        h4
+            bottom: 13px
+            color: $color-white
+            left: 15px
+            margin-bottom: 0
+            padding: 0
+            position: absolute
+            z-index: 2
+
+    &__facebook
+        background-color: $color-1
+        bottom: 0
+        left: 0
+        padding: 10px 15px
+        position: absolute
+        width: 100%
+
+        img
+            float: right
+            margin-bottom: 0
+            width: 10px
+
+    @include media-breakpoint-up(md)
+        break-inside: avoid
