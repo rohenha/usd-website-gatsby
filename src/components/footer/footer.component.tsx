@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { Link } from "gatsby"
+import { Link } from "gatsby";
 import { IFooterComponentProps } from "Interfaces";
 import { getNavTeams } from "Services";
 
@@ -44,7 +44,7 @@ export function FooterComponent({ data }: IFooterComponentProps) {
             </div>
             <div className="footer__more">
                 <div className="container">
-                    <p className="text_menu">@2020 - Créé par <Link to="https://www.romain-breton.com" className="text_menu" target="_blank">Romain Breton</Link></p>
+                    <p className="text_menu">@2020 - Créé par <a href="https://www.romain-breton.com" className="text_menu" target="_blank">Romain Breton</a></p>
                 </div>
             </div>
         </footer>

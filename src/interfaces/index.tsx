@@ -9,3 +9,4 @@ export * from './categories.interface';
 export * from './facebook.interface';
 export * from './title.interface';
 export * from './button.interface';
+export * from './cover.interface';

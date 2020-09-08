@@ -5353,6 +5353,14 @@ fb-react-sdk@^1.0.4:
     qs "^6.0.2"
     superagent "^1.7.1"
 
+fbgraph@^1.4.4:
+  version "1.4.4"
+  resolved "https://registry.yarnpkg.com/fbgraph/-/fbgraph-1.4.4.tgz#9bf45c6666152938c2592174385c5540608fcc4a"
+  integrity sha1-m/RcZmYVKTjCWSF0OFxVQGCPzEo=
+  dependencies:
+    qs "^6.5.0"
+    request "^2.79.0"
+
 fd@~0.0.2:
   version "0.0.3"
   resolved "https://registry.yarnpkg.com/fd/-/fd-0.0.3.tgz#b3240de86dbf5a345baae7382a07d4713566ff0c"
@@ -5854,6 +5862,11 @@ gatsby-page-utils@^0.2.21:
     lodash "^4.17.15"
     micromatch "^3.1.10"
 
+gatsby-plugin-env-variables@^2.0.0:
+  version "2.0.0"
+  resolved "https://registry.yarnpkg.com/gatsby-plugin-env-variables/-/gatsby-plugin-env-variables-2.0.0.tgz#a5641eb61f00490a4043fb64646ab7a631491712"
+  integrity sha512-3scVhM0B6uicDXkf9liLY31DEaRD0UCrYlAgaGuyda4bFDFa7TRN35+sVr1iVIj39ALe4bEc/nu812B82Irjrw==
+
 gatsby-plugin-page-creator@^2.3.23:
   version "2.3.23"
   resolved "https://registry.yarnpkg.com/gatsby-plugin-page-creator/-/gatsby-plugin-page-creator-2.3.23.tgz#ca684f34eb0bfd280d3f0486bbaf2e6b7e9337e3"
@@ -6016,6 +6029,13 @@ gatsby-source-datocms@^2.4.0:
     query-string "6.8.3"
     regenerator-runtime "^0.13.3"
     request-promise-native "1.0.7"
+
+gatsby-source-facebook@^2.0.1:
+  version "2.0.1"
+  resolved "https://registry.yarnpkg.com/gatsby-source-facebook/-/gatsby-source-facebook-2.0.1.tgz#4e7881afea898665c2db1decc257569b069cf356"
+  integrity sha512-f+m2IILhkGj/WJxCx6gXa7dTLWowAnIBAIh4aDpaQ+hY1bJCwUvkebV84aU9QXdgl7rnzhBuQ3ijVDf4FvrN4g==
+  dependencies:
+    fbgraph "^1.4.4"
 
 gatsby-source-filesystem@^2.3.27:
   version "2.3.27"
@@ -10349,7 +10369,7 @@ qs@6.7.0, qs@^6.5.2:
   resolved "https://registry.yarnpkg.com/qs/-/qs-6.7.0.tgz#41dc1a015e3d581f1621776be31afb2876a9b1bc"
   integrity sha512-VCdBRNFTX1fyE7Nb6FYoURo/SPe62QCaAyzJvUjwRaIsc+NePBEniHlvxFmmX56+HZphIGtV0XeCirBtpDrTyQ==
 
-qs@^6.0.2, qs@^6.6.0, qs@^6.9.1:
+qs@^6.0.2, qs@^6.5.0, qs@^6.6.0, qs@^6.9.1:
   version "6.9.4"
   resolved "https://registry.yarnpkg.com/qs/-/qs-6.9.4.tgz#9090b290d1f91728d3c22e54843ca44aea5ab687"
   integrity sha512-A1kFqHekCTM7cz0udomYUoYNWjBebHm/5wzU/XqrBRBNWectVH0QIiN+NEcZ0Dte5hvzHwbr8+XQmguPhJ6WdQ==
@@ -11038,7 +11058,7 @@ request-promise-native@1.0.7:
     stealthy-require "^1.1.1"
     tough-cookie "^2.3.3"
 
-request@^2.87.0, request@^2.88.0:
+request@^2.79.0, request@^2.87.0, request@^2.88.0:
   version "2.88.2"
   resolved "https://registry.yarnpkg.com/request/-/request-2.88.2.tgz#d73c918731cb5a87da047e207234146f664d12b3"
   integrity sha512-MsvtOrfG9ZcrOwAW+Qi+F6HbD0CWXEh9ou77uOb7FM2WPhwT7smM833PzanhJLsgXjN89Ir6V2PczXNnMpwKhw==

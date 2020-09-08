@@ -1,11 +1,23 @@
 import React from "react";
 import { graphql } from "gatsby";
-import { LayoutComponent } from "Components";
+import { 
+    CoverComponent,
+    LayoutComponent
+} from "Components";
+import { getFacebookContent } from "Services";
 
 export default function Home({ data }: any) {
+    const getFacebookPosts = () => {
+        getFacebookContent("posts.limit(10).offset(0){message,full_picture,permalink_url}")
+        .then((res: any) => {
+            console.log(res);
+        });
+    };
+    getFacebookPosts();
     return (
         <LayoutComponent seo={data.page.seoMetaTags}>
             <React.Fragment>
+                <CoverComponent title={data.page.title} image={data.page.cover.sizes} />
                 <p>Teams : {JSON.stringify(data.teams, null, 2)}</p>
                 <br/>
                 <p>Page : {JSON.stringify(data.page, null, 2)}</p>

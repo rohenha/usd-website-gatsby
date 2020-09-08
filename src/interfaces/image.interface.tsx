@@ -1,15 +1,14 @@
 export interface IImage {
-    responsiveImage: {
-        srcSet: string,
-        webpSrcSet: string,
-        sizes: string,
-        src: string,
-        width: number,
-        height: number,
-        aspectRatio: number,
-        alt: string,
-        title: string,
-        bgColor: string,
-        base64: string
-    }
+    srcSet: string,
+    sizes: string,
+    src: string,
+    width: string,
+    height: string,
+    aspectRatio: string,
+    base64: string
+}
+
+export interface IImageComponentProps {
+    className: string,
+    image: IImage
 }

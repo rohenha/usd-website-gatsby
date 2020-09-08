@@ -1,0 +1,32 @@
+.cover
+    background-position: center center
+    background-size: cover
+    overflow: hidden
+    padding: 80px 0
+    position: relative
+    width: 100%
+
+    &::before,
+    &::after
+        content: ""
+        display: block
+        left: 0
+        position: absolute
+        top: 0
+        width: 100%
+
+    &::after
+        background-color: rgba($color-2, .75)
+        height: 100%
+        z-index: 2
+
+    &::before
+        background: #0D59A4
+        background: radial-gradient(circle, #0D59A4 35%, $color-2 100%)
+        height: 200%
+        opacity: .6
+        z-index: 3
+
+    .container
+        position: relative
+        z-index: 4
