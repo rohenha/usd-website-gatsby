@@ -1,5 +1,4 @@
 var graph = require('fb-react-sdk');
-// import { graph } from "fb-react-sdk";
 
 export function getFacebookContent(fields: string) {
     graph.setAccessToken(process.env.FACEBOOK_GRAPH_TOKEN);
