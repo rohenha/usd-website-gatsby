@@ -13,6 +13,8 @@ export interface IFacebookPostState {
 }
 
 export interface IFacebookMediasContainerProps {
+    number: number,
+    loadMore: boolean
 }
 
 export interface IFacebookMediasContainerState {

@@ -10,3 +10,4 @@ export * from './facebook.interface';
 export * from './title.interface';
 export * from './button.interface';
 export * from './cover.interface';
+export * from './aside.interface';

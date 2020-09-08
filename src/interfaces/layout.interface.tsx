@@ -12,6 +12,7 @@ export interface ILayoutComponentProps {
             }
         }[]
     },
+    name: string,
     children: React.ReactElement<any>
 }
 

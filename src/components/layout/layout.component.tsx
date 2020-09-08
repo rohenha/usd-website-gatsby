@@ -4,9 +4,7 @@ import { StaticQuery, graphql } from "gatsby";
 import { HelmetDatoCms } from "gatsby-source-datocms";
 import { ILayoutComponentProps } from "Interfaces";
 
-import "../../styles/site.sass";
-
-export function LayoutComponent({ children, seo }: ILayoutComponentProps) {
+export function LayoutComponent({ children, seo, name }: ILayoutComponentProps) {
     return (
         <React.Fragment>
             <StaticQuery 
@@ -51,7 +49,7 @@ export function LayoutComponent({ children, seo }: ILayoutComponentProps) {
                         <React.Fragment>
                             <HelmetDatoCms seo={seo} favicon={data.site.faviconMetaTags} />
                             <HeaderComponent data={data} />
-                            <main>
+                            <main className={`page page_${name}`}>
                                 {children}
                             </main>
                             <FooterComponent data={data} />
