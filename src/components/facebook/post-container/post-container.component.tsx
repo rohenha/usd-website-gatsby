@@ -1,8 +1,8 @@
 import * as React from 'react';
 import { getFacebookContent } from "Services";
-import { ButtonComponent, FacebookPostComponent } from "Components";
+import { ButtonComponent, FacebookPostComponent, SpinnerComponent } from "Components";
 import { IFacebookPostsContainerProps, IFacebookPostsContainerState } from "Interfaces";
-// import masonry from "masonry-layout";
+import Masonry from 'react-masonry-component';
 
 import "./post-container.component.sass";
 
@@ -12,13 +12,16 @@ export class FacebookPostsContainerComponent extends React.Component<IFacebookPo
     private constructor(props: IFacebookPostsContainerProps) {
         super(props);
         this.state = {
+            loading: false,
             posts: []
         };
     };
 
     private getPosts = () => {
+        this.setState({ loading: true });
         getFacebookContent("posts.limit(" + this.nbrPosts + ").offset(" + this.offset + "){message,full_picture,permalink_url,created_time}").then((res: any) => {
             this.setState({
+                loading: false,
                 posts: [...this.state.posts, ...res.posts.data]
             });
         });
@@ -34,14 +37,26 @@ export class FacebookPostsContainerComponent extends React.Component<IFacebookPo
     public render(): React.ReactElement<any> {
         return (
             <React.Fragment>
-                <div className="fb_container">
-                    {this.state.posts.map((post: any) => (
-                        <FacebookPostComponent post={post} key={post.id} />
-                    ))}
-                </div>
-                <div className="fb_nav">
-                    <ButtonComponent className="" link="" type={1} event={this.addMorePosts}><React.Fragment>Plus de d'articles</React.Fragment></ButtonComponent>
-                </div>
+                <Masonry
+                    className={'fb_container'}
+                    elementType={'section'}
+                    options={{ columnWidth: ".fb_post--size", itemSelector: ".fb_post--container", percentPosition: true }}
+                    disableImagesLoaded={false}
+                    updateOnEachImageLoad={false}
+                    >
+                        <div className="fb_post--size col-md-6"></div>
+                        {this.state.posts.map((post: any) => (
+                            <FacebookPostComponent post={post} key={post.id} />
+                        ))}
+                </Masonry>
+                <nav className="fb_nav">
+                    <ButtonComponent active={!this.state.loading} className="" link="" type={1} event={this.addMorePosts}>
+                        <React.Fragment>
+                            {!this.state.loading ? <span>Plus de d'articles</span> : null }
+                            <SpinnerComponent active={this.state.loading} />
+                        </React.Fragment>
+                    </ButtonComponent>
+                </nav>
             </React.Fragment>
         );
     }

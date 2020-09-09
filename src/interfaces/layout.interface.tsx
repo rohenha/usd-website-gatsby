@@ -1,4 +1,4 @@
-import { ICategory, ITeam } from 'Interfaces';
+import { ICategory, IPartner, ITeam } from 'Interfaces';
 
 export interface ILayoutComponentProps {
     seo: {
@@ -63,6 +63,9 @@ export interface IFooterComponentProps {
         site: {
             siteName: string,
             facebookPageUrl: string
+        }
+        partners: {
+            nodes : IPartner[]
         }
     }
 }

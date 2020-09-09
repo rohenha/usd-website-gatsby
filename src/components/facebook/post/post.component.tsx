@@ -24,21 +24,23 @@ export function FacebookPostComponent({ post }: IFacebookPostProps) {
     };
 
     return (
-        <div className="col">
-            <div className={setClass()}>
-                {post.full_picture !== "" ? 
-                    <img src={post.full_picture} alt=""/> :
-                    null
-                }
-                <h4>Le {date.format("DD MMMM YYYY, à h:mm")}</h4>
-                {textConverted ?
-                    <p dangerouslySetInnerHTML={{__html: textConverted}} /> :
-                    null
-                }
-                <div className="fb_post__facebook">
-                    <img src={'/socials/facebook--white.png'} alt=""/>
-                </div>
-            </div>
+        <div className="col-md-6 fb_post--container">
+            <article className={setClass()}>
+                <a href={post.permalink_url} target="_blank">
+                    {post.full_picture !== "" ? 
+                        <img src={post.full_picture} alt=""/> :
+                        null
+                    }
+                    <h4>Le {date.format("DD MMMM YYYY, à HH:mm")}</h4>
+                    {textConverted ?
+                        <p dangerouslySetInnerHTML={{__html: textConverted}} /> :
+                        null
+                    }
+                    <div className="fb_post__facebook">
+                        <img src={'/socials/facebook--white.png'} alt=""/>
+                    </div>
+                </a>
+            </article>
         </div>
     );
 }

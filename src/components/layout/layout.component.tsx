@@ -26,6 +26,16 @@ export function LayoutComponent({ children, seo, name }: ILayoutComponentProps) 
                                 }
                             }
                         }
+                        partners: allDatoCmsPartner {
+                            nodes {
+                                name
+                                logo {
+                                    sizes(sizes: "300px", imgixParams: {w: "150", maxW: 150, fit: "clip", dpr: 1, auto: "compress"}) {
+                                        ...responsiveImageFragment
+                                    }
+                                }
+                            }
+                        }
                         site: datoCmsSite {
                             faviconMetaTags {
                                 tags

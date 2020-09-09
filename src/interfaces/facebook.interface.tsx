@@ -2,7 +2,8 @@ export interface IFacebookPostsContainerProps {
 }
 
 export interface IFacebookPostsContainerState {
-    posts: any
+    posts: any,
+    loading: boolean
 }
 
 export interface IFacebookPostProps {

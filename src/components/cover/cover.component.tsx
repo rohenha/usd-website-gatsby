@@ -8,6 +8,7 @@ export function CoverComponent({ title, image }: ICoverComponentProps) {
     
     return (
         <section className="cover" style={{ backgroundImage: "url(" + image.src + ")" }}>
+            <div className="cover__decoration"></div>
             <div className="container">
                 <TitleComponent balise="h1" text={title} />
             </div>

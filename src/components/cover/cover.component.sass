@@ -4,6 +4,7 @@
     overflow: hidden
     padding: 150px 0
     position: relative
+    text-align: center
     width: 100%
 
     &::before,
@@ -27,6 +28,52 @@
         opacity: .6
         z-index: 3
 
+    .c_title
+        &::after
+            right: 50%
+            transform: translate(50%, 0)
+
     .container
         position: relative
+        z-index: 5
+
+    &__decoration
+        height: 100%
+        left: 0
+        position: absolute
+        top: 0
+        width: 100%
         z-index: 4
+
+        &::before,
+        &::after
+            background-color: $color-2
+            content: ""
+            display: block
+            height: 130%
+            mix-blend-mode: soft-light
+            opacity: .3
+            position: absolute
+            top: 50%
+            transform: translate(0, -50%) rotate(14deg)
+            z-index: 1
+
+        &::before
+            left: -5%
+            width: 35%
+
+        &::after
+            box-shadow: 120px -25px 0 0 $color-2, 240px -50px 0 0 $color-2, 360px -75px 0 0 $color-2, 480px -100px 0 0 $color-2, 600px -125px 0 0 $color-2, 720px -150px 0 0 $color-2, 840px -175px 0 0 $color-2, 960px -200px 0 0 $color-2, 1080px -225px 0 0 $color-2, 1200px -250px 0 0 $color-2
+            left: calc(30% + 120px)
+            width: 4px
+
+    @include media-breakpoint-up(md)
+        text-align: left
+
+        .c_title
+            &::after
+                right: -7%
+                transform: translate(0, 0)
+
+
+        

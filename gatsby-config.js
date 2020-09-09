@@ -21,6 +21,12 @@ module.exports = {
       options: {
         apiToken: process.env.DATO_API_TOKEN,
       }
-    }
+    },
+    {
+      resolve: `gatsby-plugin-postcss`,
+      options: {
+        postCssPlugins: ['autoprefixer'],
+      },
+    },
   ]
 }

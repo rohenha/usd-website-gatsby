@@ -1,4 +1,5 @@
 export interface IButtonProps {
+    active: boolean,
     link: string,
     className: string,
     type: number,

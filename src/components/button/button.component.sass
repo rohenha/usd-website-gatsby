@@ -7,12 +7,24 @@
     z-index: 2
 
     &__arrow
-        background-color: red
+        background-image: url("/icons/arrow.png")
+        background-position: 0 center
+        background-repeat-y: no-repeat 
+        background-size: 100% auto
         display: inline-block
         height: 20px
         margin-left: 15px
+        transition: background-position .6s ease-in-out, transform .3s ease-in-out
         width: 20px
 
+    &:not(:disabled)
+        &:hover
+            .button__arrow
+                background-position: 20px center
+                transform: rotate(180deg)
+
+    &:disabled
+        cursor: inherit
 
     &--primary
         padding: 5px 20px
@@ -38,16 +50,25 @@
         .button__arrow
             display: none
 
-        &:hover
-            &::before
-                width: 105%
+        &:not(:disabled)
+            &:hover
+                &::before
+                    width: 105%
 
-        &:focus
-            outline: none
-            &:before
-                border: 1px solid $color-1
+            &:focus
+                outline: none
+                &:before
+                    border: 1px solid $color-1
+
+        &:disabled
+            &::before
+                background-color: $color-5
 
     &--secondary
         align-items: center
         display: flex
         justify-content: flex-end
+
+        &:disabled
+            opacity: .7
+        

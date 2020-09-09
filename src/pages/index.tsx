@@ -34,8 +34,8 @@ export default function Home({ data }: any) {
                             </AsideComponent>
                             <AsideComponent text="Médias" link="/medias" className="medias">
                                 <React.Fragment>
-                                    <FacebookMediasContainerComponent number={16} loadMore={false} />
-                                    <ButtonComponent className="aside_section__link" link="/medias" type={2} event={null}><React.Fragment>Voir plus de médias</React.Fragment></ButtonComponent>
+                                    {/* <FacebookMediasContainerComponent number={16} loadMore={false} /> */}
+                                    <ButtonComponent active={true} className="aside_section__link" link="/medias" type={2} event={null}><React.Fragment>Voir plus de médias</React.Fragment></ButtonComponent>
                                 </React.Fragment>
                             </AsideComponent>
                             <AsideComponent text="Boutique" link="/boutique" className="shop">
@@ -48,7 +48,7 @@ export default function Home({ data }: any) {
                                             </li>
                                         )) }
                                         </ul>
-                                        <ButtonComponent className="aside_section__link" link="/boutique" type={2} event={null}><React.Fragment>Voir la boutique</React.Fragment></ButtonComponent>
+                                        <ButtonComponent active={true} className="aside_section__link" link="/boutique" type={2} event={null}><React.Fragment>Voir la boutique</React.Fragment></ButtonComponent>
                                     </React.Fragment>
                             </AsideComponent>
                         </aside>

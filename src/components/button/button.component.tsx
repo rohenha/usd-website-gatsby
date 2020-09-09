@@ -4,7 +4,7 @@ import { IButtonProps } from "Interfaces";
 
 import "./button.component.sass";
 
-export function ButtonComponent({ className, event, link, type, children }: IButtonProps) {
+export function ButtonComponent({ active, className, event, link, type, children }: IButtonProps) {
     const classNames = ["primary", "secondary"];
 
     const setClassName = () => {
@@ -21,6 +21,6 @@ export function ButtonComponent({ className, event, link, type, children }: IBut
     };
     return link !== "" ?
         <Link className={setClassName()} to={link}>{renderContent()}</Link> :
-        <button className={setClassName()} onClick={event}>{renderContent()}</button>
+        <button className={setClassName()} disabled={!active} onClick={event}>{renderContent()}</button>
     ;
 }

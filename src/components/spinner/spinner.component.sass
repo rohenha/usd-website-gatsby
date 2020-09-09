@@ -1,0 +1,25 @@
+@keyframes spinnerAnimation
+    0%
+        opacity: 0
+        transform: translate(-20px, 0) scale(0)
+
+    50%
+        opacity: 1
+        transform: translate(0, 0) scale(1)
+
+    100%
+        opacity: 0
+        transform: translate(20px, 0) scale(0)
+
+.spinner
+    background-color: $color-1
+    border-radius: 20px
+    display: none
+    height: 20px
+    transform: scale(0)
+    width: 20px
+
+    &--active
+        animation: spinnerAnimation 1s infinite
+        display: block
+        // transform: translate(20px, 0) scale(1)

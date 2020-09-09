@@ -6,6 +6,8 @@ export * from './button/button.component';
 export * from './cover/cover.component';
 export * from './image/image.component';
 export * from './aside/aside.component';
+export * from './spinner/spinner.component';
+export * from './partners/partners.component';
 export * from './facebook/post-container/post-container.component';
 export * from './facebook/medias-container/medias-container.component';
 export * from './facebook/post/post.component';
