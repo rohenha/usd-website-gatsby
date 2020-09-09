@@ -29,8 +29,9 @@ export function LayoutComponent({ children, seo, name }: ILayoutComponentProps) 
                         partners: allDatoCmsPartner {
                             nodes {
                                 name
+                                website
                                 logo {
-                                    sizes(sizes: "300px", imgixParams: {w: "150", maxW: 150, fit: "clip", dpr: 1, auto: "compress"}) {
+                                    sizes(sizes: "150px", imgixParams: {w: "150", maxW: 150, fit: "clip", dpr: 1, auto: "compress"}) {
                                         ...responsiveImageFragment
                                     }
                                 }
