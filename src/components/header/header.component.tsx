@@ -1,6 +1,6 @@
 import * as React from 'react';
 import { Link } from "gatsby";
-import { ITeamMenu, IteamsByCategorie, ICategory } from "Interfaces";
+import { ITeam, IteamsByCategorie, ICategory } from "Interfaces";
 import { getTeamsInCategories, renderLink } from "Services";
 
 import "./header.component.sass";
@@ -11,7 +11,7 @@ interface IHeaderComponentProps {
             categories: ICategory[]
         },
         teams: {
-            nodes: ITeamMenu[]
+            nodes: ITeam[]
         },
         logo: {
             sizes: {
@@ -67,7 +67,7 @@ export class HeaderComponent extends React.Component<IHeaderComponentProps, IHea
                                                    <div className="header__dropdown__teams--container">
                                                         <p className="text_dropdown_title">{element.category.name}</p>
                                                         <ul className="header__dropdown__teams">
-                                                            {element.teams.map((team: ITeamMenu, index: number) => (
+                                                            {element.teams.map((team: ITeam, index: number) => (
                                                                 renderLink(team, index, 'team', 'text_dropdown')
                                                             ))}
                                                         </ul>

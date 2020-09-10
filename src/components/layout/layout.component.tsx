@@ -4,6 +4,8 @@ import { StaticQuery, graphql } from "gatsby";
 import { HelmetDatoCms } from "gatsby-source-datocms";
 import { ISEOTag } from "Interfaces";
 
+import "./layout.component.sass";
+
 interface ILayoutComponentProps {
     seo: {
         tags: ISEOTag[]

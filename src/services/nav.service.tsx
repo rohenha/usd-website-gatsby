@@ -20,7 +20,7 @@ export function getTeamsInCategories(categories: ICategory[], teams: ITeam[] ) {
 };
 
 export function getTeamsByCategories(category: ICategory, teams: ITeam[]) {
-    const currentTeams = teams.filter((team: ITeamMenu) => {
+    const currentTeams = teams.filter((team: ITeam) => {
         return team.category.id == category.id;
     });
     currentTeams.sort((a: ITeam, b: ITeam) => {

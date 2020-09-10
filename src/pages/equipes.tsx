@@ -1,6 +1,8 @@
 import React from "react";
 import { graphql } from "gatsby";
-import { LayoutComponent } from "Components";
+import { CoverComponent, LayoutComponent, TeamArticleComponent, TitleComponent } from "Components";
+import { getTeamsInCategories } from "Services";
+import { IteamsByCategorie, ITeam } from "Interfaces";
 // import { IPageCurrent, ITeam } from "Interfaces";
 
 // interface ITeamsPageProps {
@@ -27,6 +29,8 @@ export const query = graphql`
         teams: allDatoCmsTeam {
             nodes {
                 ...teamFragment
+                team
+                division
                 category {
                     name
                     id
@@ -40,6 +44,13 @@ export const query = graphql`
                     name
                     surname
                 }
+            }
+        }
+        categoriesOrder: datoCmsCategoriesOrder {
+            categories {
+                id
+                slug
+                name
             }
         }
         page: datoCmsTeamsPage {
@@ -58,10 +69,33 @@ export default function Teams({ data }: any) {
     return (
         <LayoutComponent seo={data.page.seoMetaTags} name="teams">
             <React.Fragment>
-                <p>Teams : {JSON.stringify(data.teams, null, 2)}</p>
-                <br/>
-                <p>Page : {JSON.stringify(data.page, null, 2)}</p>
+                <CoverComponent big={false} title={data.page.title} image={data.page.cover.sizes} />
+                <div className="page__content container">
+                    {getTeamsInCategories(data.categoriesOrder.categories, data.teams.nodes).map((element: IteamsByCategorie, index: number) => {
+                        if (element.teams.length > 0) {
+                            return (
+                                <React.Fragment key={index}>
+                                    <TitleComponent balise="h2" text={element.category.name} />
+                                    <ul className="row">
+                                        {element.teams.map((team: ITeam, index: number) => (
+                                            <div className="col-md-4" key={index}>
+                                                <TeamArticleComponent team={team} />
+                                            </div>
+                                        ))}
+                                    </ul>
+                                </React.Fragment>
+                            );
+                        } else {
+                            return null;
+                        }
+                    })} 
+                </div>
             </React.Fragment>
         </LayoutComponent>
     );
 };
+{/* <React.Fragment>
+    <p>Teams : {JSON.stringify(data.teams, null, 2)}</p>
+    <br/>
+    <p>Page : {JSON.stringify(data.page, null, 2)}</p>
+</React.Fragment> */}

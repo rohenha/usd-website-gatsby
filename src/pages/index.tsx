@@ -10,7 +10,7 @@ import {
     TitleComponent,
     ImageComponent
 } from "Components";
-import { IProduct, ITeam, IPageCurrent, IPage } from "Interfaces";
+import { IProduct, ITeamHome, ITeam, IPageCurrent, IPage } from "Interfaces";
 
 interface IHomePageProps {
     data: {
@@ -22,7 +22,7 @@ interface IHomePageProps {
             nodes: IProduct[]
         },
         teams: {
-            nodes: ITeam[]
+            nodes: ITeamHome[]
         }
     }
 }
@@ -31,7 +31,7 @@ export const query = graphql`
     query HomePage {
         teams: allDatoCmsTeam {
             nodes {
-                ...teamHomeFragment
+                ...teamFragment
             }
         }
         page: datoCmsHomePage {
@@ -81,7 +81,7 @@ export default function Home({ data }: IHomePageProps) {
                         <aside className="col-md-3 offset-md-1">
                             <AsideComponent text="Équipes" link="/equipes" className="teams">
                                 <ul>
-                                    {data.teams.nodes.map((team: ITeam, index: number) => (
+                                    {data.teams.nodes.map((team: ITeamHome, index: number) => (
                                         <li key={index}><Link to={"equipes/" + team.slug}><h3>{team.name}</h3></Link></li>
                                     )) }
                                 </ul>

@@ -12,3 +12,4 @@ export * from './facebook/post-container/post-container.component';
 export * from './facebook/medias-container/medias-container.component';
 export * from './facebook/post/post.component';
 export * from './facebook/media/media.component';
+export * from './team/article/article.component';
