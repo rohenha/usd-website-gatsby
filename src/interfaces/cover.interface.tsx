@@ -1,5 +1,6 @@
 export interface ICoverComponentProps {
     title: string,
+    big: boolean,
     image: {
         srcSet: string,
         sizes: string,

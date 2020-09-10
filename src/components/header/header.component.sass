@@ -21,7 +21,7 @@
         background-color: $color-1
         height: 100vh
         left: 0
-        padding: 30px 0
+        padding: 35px 0
         position: fixed
         top: 0
         transform: translate(-100%, 0)
@@ -63,7 +63,8 @@
             position: relative
             width: 100%
 
-            a
+            a,
+            .header__dropdown__teams--container
                 padding: 0 30px
 
             &.header__el_left
@@ -77,11 +78,27 @@
 
     &__dropdown
         background-color: $color-2
-        // height: 150px
         padding: 20px 0
-        li
-            // display: inline-block
-            // width: calc(100% / 3)
+        > li
+            &:not(:last-child)
+                margin-bottom: 8px
+        &__teams
+            display: inline-block
+            &--container
+                align-items: center
+                display: flex
+                justify-content: flex-start
+                p
+                    display: inline-block
+                    margin-bottom: 0
+                    margin-right: 20px
+            li
+                display: inline-block
+                &:not(:last-child)
+                    margin-bottom: 0
+                    margin-right: 10px
+                a
+                    padding: 0
 
     &__title
         align-items: center
@@ -151,6 +168,9 @@
 
                 &.header__el_left
                     margin-right: auto
+
+                .header__dropdown__teams--container
+                    padding: 0
                 a
                     padding: 0
                     position: relative
@@ -177,9 +197,9 @@
             width: 150px
             z-index: -1
 
-            li
-                &:not(:last-child)
-                    margin-bottom: 10px
+            // li
+            //     &:not(:last-child)
+            //         margin-bottom: 10px
 
         &__mobile
             display: none

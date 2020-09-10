@@ -4,14 +4,15 @@ import { ICoverComponentProps } from "Interfaces";
 
 import "./cover.component.sass";
 
-export function CoverComponent({ title, image }: ICoverComponentProps) {
+export function CoverComponent({ big, title, image }: ICoverComponentProps) {
     
     return (
-        <section className="cover" style={{ backgroundImage: "url(" + image.src + ")" }}>
+        <section className={big ? "cover cover--big" : "cover"} style={{ backgroundImage: "url(" + image.src + ")" }}>
             <div className="cover__decoration"></div>
             <div className="container">
                 <TitleComponent balise="h1" text={title} />
             </div>
+            <div className="cover__scroller"></div>
         </section>
     );
 }

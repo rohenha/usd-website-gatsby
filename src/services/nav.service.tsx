@@ -4,9 +4,20 @@ import * as React from 'react';
 
 export function getNavTeams(categories: ICategory[], teams: ITeam[] ) {
     return categories.map((category: ICategory) => {
-        return getTeamsByCategories(category, teams);
+        return getTeamsByCategories(category, teams).map((team: ITeam, index: number) => {
+            return renderLink(team, index, 'name', '');
+        });
     });
-}
+};
+
+export function getTeamsInCategories(categories: ICategory[], teams: ITeam[] ) {
+    return categories.map((category: ICategory) => {
+        return {
+            category,
+            teams: getTeamsByCategories(category, teams)
+        }
+    });
+};
 
 export function getTeamsByCategories(category: ICategory, teams: ITeam[]) {
     const currentTeams = teams.filter((team: ITeamMenu) => {
@@ -15,13 +26,15 @@ export function getTeamsByCategories(category: ICategory, teams: ITeam[]) {
     currentTeams.sort((a: ITeam, b: ITeam) => {
         return a.team.localeCompare(b.team);
     });
-    return currentTeams.map((team: ITeam, index: number) => {
-        return (
-            <li key={index}>
-                <Link className="text_menu" to={"/equipes/" + team.slug}>
-                    {team.name}
-                </Link>
-            </li>
-        );
-    })
-}
+    return currentTeams;
+};
+
+export function renderLink(team: ITeam, index: number, attribute: string, className: string) {
+    return (
+        <li key={index}>
+            <Link className={`text_menu ${className}`} to={"/equipes/" + team.slug}>
+                {team[attribute]}
+            </Link>
+        </li>
+    );
+};

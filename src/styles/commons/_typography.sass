@@ -10,6 +10,8 @@ h4,
 .btn,
 .text_menu,
 .text_team,
+.text_dropdown,
+.text_dropdown_title,
 .button--primary
     font-family: $font-title
     text-transform: uppercase
@@ -99,6 +101,7 @@ button
         line-height: px2rem(17)
 
     &_team
+        color: $color-3
         font-size: px2rem(35)
         font-weight: bold
         letter-spacing: ls2rem(2.45)
@@ -107,4 +110,31 @@ button
             -webkit-text-fill-color: rgba($color-white, 0)
             -webkit-text-stroke: 1px $color-3
             color: rgba($color-white, 0)
+
+    &_dropdown
+        color: $color-3
+        font-size: px2rem(25)
+        font-weight: bold
+        letter-spacing: ls2rem(100)
+        line-height: px2rem(35)
+        @supports (-webkit-text-stroke: 1px $color-3)
+            -webkit-text-fill-color: rgba($color-white, 0)
+            -webkit-text-stroke: 1px $color-3
+            color: rgba($color-white, 0)
+
+        &_title
+            color: $color-white
+            font-size: px2rem(20)
+            letter-spacing: ls2rem(2.45)
+            line-height: px2rem(25)
+
+
+@include media-breakpoint-up(md)
+
+    .text
+        &_dropdown
+            &:hover
+                @supports (-webkit-text-stroke: 1px $color-3)
+                    -webkit-text-fill-color: $color-3
+                    color: $color-3
 

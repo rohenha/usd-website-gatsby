@@ -31,7 +31,7 @@ export function LayoutComponent({ children, seo, name }: ILayoutComponentProps) 
                                 name
                                 website
                                 logo {
-                                    sizes(sizes: "150px", imgixParams: {w: "150", maxW: 150, fit: "clip", dpr: 1, auto: "compress"}) {
+                                    sizes(sizes: "150px", imgixParams: {w: "300", maxW: 300, fit: "clip", dpr: 2, auto: "compress"}) {
                                         ...responsiveImageFragment
                                     }
                                 }

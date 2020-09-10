@@ -1,8 +1,21 @@
+@keyframes coverScrollerAnimation
+    10%
+        transform: translate(0, -15px) scale(0)
+
+    30%
+        transform: translate(0, -15px) scale(1)
+
+    70%
+        transform: translate(0, 0) scale(1)
+
+    90%
+        transform: translate(0, 0) scale(0)
+
 .cover
     background-position: center center
     background-size: cover
     overflow: hidden
-    padding: 150px 0
+    padding: 210px 0 150px
     position: relative
     text-align: center
     width: 100%
@@ -28,7 +41,10 @@
         opacity: .6
         z-index: 3
 
-    .c_title
+    &--big
+        padding: 240px 0 180px
+
+    .title
         &::after
             right: 50%
             transform: translate(50%, 0)
@@ -50,7 +66,7 @@
             background-color: $color-2
             content: ""
             display: block
-            height: 130%
+            height: 160%
             mix-blend-mode: soft-light
             opacity: .3
             position: absolute
@@ -67,10 +83,38 @@
             left: calc(30% + 120px)
             width: 4px
 
+    &__scroller
+        border: 1px solid $color-white
+        border-radius: 30px
+        bottom: 15px
+        height: 50px
+        left: 50%
+        position: absolute
+        transform: translate(-50%, 0)
+        width: 25px
+        z-index: 6
+
+        &::before
+            animation: coverScrollerAnimation 3s infinite
+            background-color: $color-white
+            border-radius: 8px
+            bottom: 6px
+            content: ""
+            display: block
+            height: 8px
+            left: calc(50% - 4px)
+            position: absolute
+            transform: scale(0)
+            width: 8px
+
     @include media-breakpoint-up(md)
+        padding: 180px 0 150px
         text-align: left
 
-        .c_title
+        &--big
+            padding: 230px 0 200px
+
+        .title
             &::after
                 right: -7%
                 transform: translate(0, 0)

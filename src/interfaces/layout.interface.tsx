@@ -1,5 +1,10 @@
 import { ICategory, IPartner, ITeam } from 'Interfaces';
 
+export interface IteamsByCategorie {
+    category: ICategory,
+    teams: ITeam[]
+}
+
 export interface ILayoutComponentProps {
     seo: {
         tags: {

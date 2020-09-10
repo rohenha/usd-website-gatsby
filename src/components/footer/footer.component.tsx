@@ -7,7 +7,6 @@ import { PartnersComponent } from "Components";
 import "./footer.component.sass";
 
 export function FooterComponent({ data }: IFooterComponentProps) {
-    
     return (
         <React.Fragment>
             <PartnersComponent partners={data.partners.nodes} />

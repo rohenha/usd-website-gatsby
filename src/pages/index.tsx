@@ -17,7 +17,7 @@ export default function Home({ data }: any) {
     return (
         <LayoutComponent seo={data.page.seoMetaTags} name="home" >
             <React.Fragment>
-                <CoverComponent title={data.page.title} image={data.page.cover.sizes} />
+                <CoverComponent big={true} title={data.page.title} image={data.page.cover.sizes} />
                 <div className="page__content container">
                     <div className="row">
                         <div className="col-md-8 mb-5 mb-md-0">

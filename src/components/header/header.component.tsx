@@ -1,13 +1,15 @@
 import * as React from 'react';
 import { Link } from "gatsby";
-import { IHeaderComponentProps, IHeaderComponentState } from "Interfaces";
-import { getNavTeams } from "Services";
+import { ITeam, IteamsByCategorie, IHeaderComponentProps, IHeaderComponentState } from "Interfaces";
+import { getTeamsInCategories, renderLink } from "Services";
 
 import "./header.component.sass";
 
 export class HeaderComponent extends React.Component<IHeaderComponentProps, IHeaderComponentState> {
+    private teamsByCategorie: IteamsByCategorie[];
     private constructor(props: IHeaderComponentProps) {
         super(props);
+        this.teamsByCategorie = getTeamsInCategories(this.props.data.categoriesOrder.categories, this.props.data.teams.nodes);
         this.state = {
             navState: false
         };
@@ -32,7 +34,24 @@ export class HeaderComponent extends React.Component<IHeaderComponentProps, IHea
                             <li>
                                 <Link className="text_menu" to="/equipes">Équipes</Link>
                                 <ul className="header__dropdown">
-                                    {getNavTeams(this.props.data.categoriesOrder.categories, this.props.data.teams.nodes)}
+                                   {this.teamsByCategorie.map((element: IteamsByCategorie, index: number) => {
+                                       if (element.teams.length > 0) {
+                                           return (
+                                               <li key={index}>
+                                                   <div className="header__dropdown__teams--container">
+                                                        <p className="text_dropdown_title">{element.category.name}</p>
+                                                        <ul className="header__dropdown__teams">
+                                                            {element.teams.map((team: ITeam, index: number) => (
+                                                                renderLink(team, index, 'team', 'text_dropdown')
+                                                            ))}
+                                                        </ul>
+                                                   </div>
+                                               </li>
+                                           );
+                                       } else {
+                                           return null;
+                                       }
+                                   })} 
                                 </ul>
                             </li>
                             <li><Link className="text_menu" to="/medias">Médias</Link></li>
