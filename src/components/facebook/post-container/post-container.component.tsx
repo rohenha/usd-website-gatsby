@@ -1,10 +1,16 @@
 import * as React from 'react';
 import { getFacebookContent } from "Services";
 import { ButtonComponent, FacebookPostComponent, SpinnerComponent } from "Components";
-import { IFacebookPostsContainerProps, IFacebookPostsContainerState } from "Interfaces";
 import Masonry from 'react-masonry-component';
 
 import "./post-container.component.sass";
+
+interface IFacebookPostsContainerProps {}
+
+interface IFacebookPostsContainerState {
+    posts: any,
+    loading: boolean
+}
 
 export class FacebookPostsContainerComponent extends React.Component<IFacebookPostsContainerProps, IFacebookPostsContainerState> {
     private offset: number = 0;

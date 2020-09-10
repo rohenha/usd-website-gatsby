@@ -1,8 +1,21 @@
 import * as React from 'react';
 import { TitleComponent } from "Components";
-import { ICoverComponentProps } from "Interfaces";
 
 import "./cover.component.sass";
+
+interface ICoverComponentProps {
+    title: string,
+    big: boolean,
+    image: {
+        srcSet: string,
+        sizes: string,
+        width: string,
+        height: string,
+        aspectRatio: string,
+        base64: string,
+        src: string
+    }
+}
 
 export function CoverComponent({ big, title, image }: ICoverComponentProps) {
     

@@ -1,18 +1,26 @@
 import React from "react";
 import { graphql } from "gatsby";
 import { LayoutComponent } from "Components";
+// import { IPageCurrent, ITeam } from "Interfaces";
 
-export default function Teams({ data }: any) {
-    return (
-        <LayoutComponent seo={data.page.seoMetaTags}>
-            <React.Fragment>
-                <p>Teams : {JSON.stringify(data.teams, null, 2)}</p>
-                <br/>
-                <p>Page : {JSON.stringify(data.page, null, 2)}</p>
-            </React.Fragment>
-        </LayoutComponent>
-    );
-};
+// interface ITeamsPageProps {
+//     data: {
+//         page: IPageCurrent,
+//         teams: {
+//             nodes: {
+//                 name: string,
+//                 slug: string,
+//                 category: ICategory,
+//                 team: string,
+//                 managers: {
+//                     name: string,
+//                     surname: string
+//                 }
+//             }
+//         }
+//     }
+// }
+
 
 export const query = graphql`
     query AboutPage {
@@ -45,3 +53,15 @@ export const query = graphql`
         }
     }
 `;
+
+export default function Teams({ data }: any) {
+    return (
+        <LayoutComponent seo={data.page.seoMetaTags} name="teams">
+            <React.Fragment>
+                <p>Teams : {JSON.stringify(data.teams, null, 2)}</p>
+                <br/>
+                <p>Page : {JSON.stringify(data.page, null, 2)}</p>
+            </React.Fragment>
+        </LayoutComponent>
+    );
+};

@@ -1,6 +1,5 @@
 import React from "react";
-import { graphql } from "gatsby";
-import { Link } from "gatsby";
+import { graphql, Link } from "gatsby";
 import { 
     AsideComponent,
     ButtonComponent,
@@ -11,9 +10,64 @@ import {
     TitleComponent,
     ImageComponent
 } from "Components";
-import { IProduct, ITeam } from "Interfaces";
+import { IProduct, ITeam, IPageCurrent, IPage } from "Interfaces";
 
-export default function Home({ data }: any) {
+interface IHomePageProps {
+    data: {
+        page: IPageCurrent,
+        teamsPage: IPage,
+        shopPage: IPage,
+        mediasPage: IPage,
+        products: {
+            nodes: IProduct[]
+        },
+        teams: {
+            nodes: ITeam[]
+        }
+    }
+}
+
+export const query = graphql`
+    query HomePage {
+        teams: allDatoCmsTeam {
+            nodes {
+                ...teamHomeFragment
+            }
+        }
+        page: datoCmsHomePage {
+            title
+            cover {
+                ...coverFragment
+            }
+            seoMetaTags {
+                tags
+            }
+        }
+        teamsPage: datoCmsTeamsPage {
+            title
+        }
+        shopPage: datoCmsShopPage {
+            title
+            description
+        }
+        mediasPage: datoCmsShopPage {
+            title
+            description
+        }
+        products: allDatoCmsProduct(limit: 3) {
+            nodes {
+                ...productFragment
+                cover {
+                    sizes(sizes: "500px", imgixParams: {w: "500", maxW: 500, fit: "clip", dpr: 1, auto: "compress"}) {
+                        ...responsiveImageFragment
+                    }
+                }
+            }
+        }
+    }
+`;
+
+export default function Home({ data }: IHomePageProps) {
     return (
         <LayoutComponent seo={data.page.seoMetaTags} name="home" >
             <React.Fragment>
@@ -35,7 +89,7 @@ export default function Home({ data }: any) {
                             <AsideComponent text="Médias" link="/medias" className="medias">
                                 <React.Fragment>
                                     {/* <FacebookMediasContainerComponent number={16} loadMore={false} /> */}
-                                    <ButtonComponent active={true} className="aside_section__link" link="/medias" type={2} event={null}><React.Fragment>Voir plus de médias</React.Fragment></ButtonComponent>
+                                    <ButtonComponent active={true} className="aside_section__link" link="/medias" type={2} event={() => {}}><React.Fragment>Voir plus de médias</React.Fragment></ButtonComponent>
                                 </React.Fragment>
                             </AsideComponent>
                             <AsideComponent text="Boutique" link="/boutique" className="shop">
@@ -48,7 +102,7 @@ export default function Home({ data }: any) {
                                             </li>
                                         )) }
                                         </ul>
-                                        <ButtonComponent active={true} className="aside_section__link" link="/boutique" type={2} event={null}><React.Fragment>Voir la boutique</React.Fragment></ButtonComponent>
+                                        <ButtonComponent active={true} className="aside_section__link" link="/boutique" type={2} event={() => {}}><React.Fragment>Voir la boutique</React.Fragment></ButtonComponent>
                                     </React.Fragment>
                             </AsideComponent>
                         </aside>
@@ -58,39 +112,3 @@ export default function Home({ data }: any) {
         </LayoutComponent>
     );
 };
-
-export const query = graphql`
-    query HomePage {
-        teams: allDatoCmsTeam {
-            nodes {
-                ...teamFragment
-            }
-        }
-        page: datoCmsHomePage {
-            title
-            cover {
-                ...coverFragment
-            }
-            seoMetaTags {
-                tags
-            }
-        }
-        teamsPage: datoCmsTeamsPage {
-            title
-        }
-        shopPage: datoCmsShopPage {
-            title
-            description
-        }
-        products: allDatoCmsProduct(limit: 3) {
-            nodes {
-                ...productFragment
-                cover {
-                    sizes(sizes: "500px", imgixParams: {w: "500", maxW: 500, fit: "clip", dpr: 1, auto: "compress"}) {
-                        ...responsiveImageFragment
-                    }
-                }
-            }
-        }
-    }
-`;

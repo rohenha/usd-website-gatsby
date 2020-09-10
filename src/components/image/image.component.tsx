@@ -1,5 +1,10 @@
 import * as React from 'react';
-import { IImageComponentProps } from "Interfaces";
+import { IImage } from "Interfaces";
+
+interface IImageComponentProps {
+    className: string,
+    image: IImage
+}
 
 export function ImageComponent({ className, image }: IImageComponentProps) {
     

@@ -10,6 +10,13 @@ export const teamFragment = graphql`
     }
 `;
 
+export const teamHomeFragment = graphql`
+    fragment teamHomeFragment on DatoCmsTeam {
+        name
+        slug
+    }
+`;
+
 export const productFragment = graphql`
     fragment productFragment on DatoCmsProduct {
         name

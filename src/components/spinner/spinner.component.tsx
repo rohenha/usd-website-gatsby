@@ -1,7 +1,10 @@
 import * as React from 'react';
-import { ISpinnerComponentProps } from "Interfaces";
 
 import "./spinner.component.sass";
+
+interface ISpinnerComponentProps {
+    active: boolean
+}
 
 export function SpinnerComponent({ active }: ISpinnerComponentProps) {
     return (

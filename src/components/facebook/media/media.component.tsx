@@ -1,5 +1,8 @@
 import * as React from 'react';
-import { IFacebookMediaProps } from "Interfaces";
+
+interface IFacebookMediaProps {
+    media: any
+}
 
 export function FacebookMediaComponent({ media }: IFacebookMediaProps) {
     return (

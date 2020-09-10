@@ -1,8 +1,12 @@
 import * as React from 'react';
-import { IPartner, IPartnersComponentProps } from "Interfaces";
+import { IPartner } from "Interfaces";
 import { ImageComponent } from "Components";
 
 import "./partners.component.sass";
+
+interface IPartnersComponentProps {
+    partners: IPartner[]
+}
 
 export function PartnersComponent({ partners }: IPartnersComponentProps) {
 

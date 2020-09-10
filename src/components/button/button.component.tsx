@@ -1,8 +1,16 @@
 import * as React from 'react';
 import { Link } from "gatsby";
-import { IButtonProps } from "Interfaces";
 
 import "./button.component.sass";
+
+interface IButtonProps {
+    active: boolean,
+    link: string,
+    className: string,
+    type: number,
+    event: () => void | null,
+    children: React.ReactElement<any>
+}
 
 export function ButtonComponent({ active, className, event, link, type, children }: IButtonProps) {
     const classNames = ["primary", "secondary"];

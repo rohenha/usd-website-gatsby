@@ -1,11 +1,15 @@
 import * as React from 'react';
-import {
-    getFacebookContent
-} from "Services";
-import {
-    FacebookMediaComponent
-} from "Components";
-import { IFacebookMediasContainerProps, IFacebookMediasContainerState } from "Interfaces";
+import {getFacebookContent } from "Services";
+import { FacebookMediaComponent } from "Components";
+
+interface IFacebookMediasContainerProps {
+    number: number,
+    loadMore: boolean
+}
+
+interface IFacebookMediasContainerState {
+    medias: any
+}
 
 export class FacebookMediasContainerComponent extends React.Component<IFacebookMediasContainerProps, IFacebookMediasContainerState> {
     private offset: number = 0;

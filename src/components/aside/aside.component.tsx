@@ -1,9 +1,15 @@
 import * as React from 'react';
 import { TitleComponent } from "Components";
-import { IAsideComponentProps } from "Interfaces";
 import { Link } from "gatsby";
 
 import "./aside.component.sass";
+
+interface IAsideComponentProps {
+    text: string,
+    link: string,
+    className: string,
+    children: React.ReactElement<any>
+}
 
 export function AsideComponent({ text, link, className, children }: IAsideComponentProps) {
 

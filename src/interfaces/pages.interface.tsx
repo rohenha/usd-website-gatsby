@@ -1,4 +1,4 @@
-import { IImage, IManager, IProduct, ITeamMenu, ITeam } from 'Interfaces';
+import { IImage, IManager, IProduct, ISEOTag, ITeam } from 'Interfaces';
 
 export interface IPage {
     title: string,
@@ -6,9 +6,8 @@ export interface IPage {
 }
 
 export interface IPageCurrent extends IPage {
-    seo: {
-        title: string,
-        description: string
+    seoMetaTags: {
+        tags: ISEOTag[]
     },
     cover: IImage
 }
@@ -28,16 +27,6 @@ export interface IShop extends IPageCurrent {
     shopFile: {
         url: string
     }
-}
-
-export interface IHomePage {
-    pages: {
-        home: IPageCurrent,
-        teams: IPage,
-        shop: IPage
-    },
-    products: IProduct[],
-    teams: ITeamMenu[]
 }
 
 export interface IMediasPage {

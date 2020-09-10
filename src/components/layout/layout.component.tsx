@@ -2,7 +2,15 @@ import { FooterComponent, HeaderComponent } from "Components";
 import * as React from "react";
 import { StaticQuery, graphql } from "gatsby";
 import { HelmetDatoCms } from "gatsby-source-datocms";
-import { ILayoutComponentProps } from "Interfaces";
+import { ISEOTag } from "Interfaces";
+
+interface ILayoutComponentProps {
+    seo: {
+        tags: ISEOTag[]
+    },
+    name: string,
+    children: React.ReactElement<any>
+}
 
 export function LayoutComponent({ children, seo, name }: ILayoutComponentProps) {
     return (

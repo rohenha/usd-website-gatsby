@@ -2,16 +2,20 @@ import React from "react";
 import { graphql } from "gatsby";
 import { LayoutComponent } from "Components";
 
-export default function Product({ data }: any) {
-  return (
-    <LayoutComponent seo={data.product.seoMetaTags}>
-      <React.Fragment>
-        <p>Team : {JSON.stringify(data.product, null, 2)}</p>
-      </React.Fragment>
-    </LayoutComponent>
-  )
-}
-
+// interface IHomePageProps {
+//   data: {
+//       page: IPageCurrent,
+//       teamsPage: IPage,
+//       shopPage: IPage,
+//       mediasPage: IPage,
+//       products: {
+//           nodes: IProduct[]
+//       },
+//       teams: {
+//           nodes: ITeam[]
+//       }
+//   }
+// }
 
 export const query = graphql`
     query ProductPage($slug: String!) {
@@ -26,3 +30,14 @@ export const query = graphql`
         }
     }
 `;
+
+export default function Product({ data }: any) {
+  return (
+    <LayoutComponent seo={data.product.seoMetaTags} name="product">
+      <React.Fragment>
+        <p>Team : {JSON.stringify(data.product, null, 2)}</p>
+      </React.Fragment>
+    </LayoutComponent>
+  )
+}
+

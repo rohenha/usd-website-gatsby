@@ -1,9 +1,12 @@
 import * as React from 'react';
-import { IFacebookPostProps } from "Interfaces";
 import moment from 'moment';
 import "moment/locale/fr";
 
 import "./post.component.sass";
+
+interface IFacebookPostProps {
+    post: any
+}
 
 export function FacebookPostComponent({ post }: IFacebookPostProps) {
     const date = moment(post.created_time).locale('fr');

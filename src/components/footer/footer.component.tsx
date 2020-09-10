@@ -1,10 +1,35 @@
 import * as React from 'react';
 import { Link } from "gatsby";
-import { IFooterComponentProps } from "Interfaces";
+import { ICategory, ITeam, IPartner } from "Interfaces";
 import { getNavTeams } from "Services";
 import { PartnersComponent } from "Components";
 
 import "./footer.component.sass";
+
+interface IFooterComponentProps {
+    data: {
+        categoriesOrder: {
+            categories: ICategory[]
+        },
+        teams: {
+            nodes: ITeam[]
+        },
+        logo: {
+            sizes: {
+                srcSet: string,
+                src: string,
+                sizes: string
+            }
+        },
+        site: {
+            siteName: string,
+            facebookPageUrl: string
+        }
+        partners: {
+            nodes : IPartner[]
+        }
+    }
+}
 
 export function FooterComponent({ data }: IFooterComponentProps) {
     return (

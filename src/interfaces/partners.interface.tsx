@@ -7,8 +7,3 @@ export interface IPartner {
         sizes: IImage
     }
 }
-
-
-export interface IPartnersComponentProps {
-    partners: IPartner[]
-}

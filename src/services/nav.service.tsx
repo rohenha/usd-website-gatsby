@@ -29,7 +29,7 @@ export function getTeamsByCategories(category: ICategory, teams: ITeam[]) {
     return currentTeams;
 };
 
-export function renderLink(team: ITeam, index: number, attribute: string, className: string) {
+export function renderLink(team: ITeamMenu, index: number, attribute: string, className: string) {
     return (
         <li key={index}>
             <Link className={`text_menu ${className}`} to={"/equipes/" + team.slug}>

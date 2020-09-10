@@ -7,8 +7,3 @@ export interface IImage {
     aspectRatio: string,
     base64: string
 }
-
-export interface IImageComponentProps {
-    className: string,
-    image: IImage
-}

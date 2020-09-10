@@ -1,7 +1,11 @@
 import * as React from 'react';
-import { ITitleComponentProps } from "Interfaces";
 
 import './title.component.sass';
+
+interface ITitleComponentProps {
+    balise: string,
+    text: string
+}
 
 export function TitleComponent({ balise, text }: ITitleComponentProps) {
     const span = React.createElement("span", {}, text);

@@ -1,9 +1,35 @@
 import * as React from 'react';
 import { Link } from "gatsby";
-import { ITeam, IteamsByCategorie, IHeaderComponentProps, IHeaderComponentState } from "Interfaces";
+import { ITeamMenu, IteamsByCategorie, ICategory } from "Interfaces";
 import { getTeamsInCategories, renderLink } from "Services";
 
 import "./header.component.sass";
+
+interface IHeaderComponentProps {
+    data: {
+        categoriesOrder: {
+            categories: ICategory[]
+        },
+        teams: {
+            nodes: ITeamMenu[]
+        },
+        logo: {
+            sizes: {
+                srcSet: string,
+                src: string,
+                sizes: string
+            }
+        },
+        site: {
+            siteName: string,
+            facebookPageUrl: string
+        }
+    }
+}
+
+interface IHeaderComponentState {
+    navState: boolean
+}
 
 export class HeaderComponent extends React.Component<IHeaderComponentProps, IHeaderComponentState> {
     private teamsByCategorie: IteamsByCategorie[];
@@ -29,7 +55,7 @@ export class HeaderComponent extends React.Component<IHeaderComponentProps, IHea
                         <ul className="header__list">
                             <li className="header__title header__mobile">
                                 <h3>Menu</h3>
-                                <button className="header__mobile header__burger" onClick={this.toggleNav}><span/></button>
+                                <button className="header__mobile header__close" onClick={this.toggleNav}><span/></button>
                             </li>
                             <li>
                                 <Link className="text_menu" to="/equipes">Équipes</Link>
@@ -41,7 +67,7 @@ export class HeaderComponent extends React.Component<IHeaderComponentProps, IHea
                                                    <div className="header__dropdown__teams--container">
                                                         <p className="text_dropdown_title">{element.category.name}</p>
                                                         <ul className="header__dropdown__teams">
-                                                            {element.teams.map((team: ITeam, index: number) => (
+                                                            {element.teams.map((team: ITeamMenu, index: number) => (
                                                                 renderLink(team, index, 'team', 'text_dropdown')
                                                             ))}
                                                         </ul>
