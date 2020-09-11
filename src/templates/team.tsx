@@ -30,8 +30,8 @@ export const query = graphql`
             managers {
                 ...managerFragment
             }
-            first_line
-            second_line
+            firstLine
+            secondLine
             seoMetaTags {
               tags
             }
@@ -65,8 +65,8 @@ export default function Team({ data }: any) {
                                 <ImageComponent className="" image={data.team.cover.sizes} />
                             </div>
                             <TitleComponent balise="h2" text="Effectif" />
-                            {renderLine(data.team.first_line, "Rang debout de gauche à droite")}
-                            {renderLine(data.team.second_line, "Rang assis de gauche à droite")}
+                            {renderLine(data.team.firstLine, "Rang debout de gauche à droite")}
+                            {renderLine(data.team.secondLine, "Rang assis de gauche à droite")}
                         </div>
                         <aside className="col-md-3 offset-md-1">
                             <AsideComponent text="Dirigeant" link="" className="manager">
