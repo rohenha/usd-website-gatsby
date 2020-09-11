@@ -30,6 +30,8 @@ export const query = graphql`
             managers {
                 ...managerFragment
             }
+            first_line
+            second_line
             seoMetaTags {
               tags
             }
@@ -38,33 +40,45 @@ export const query = graphql`
 `;
 
 export default function Team({ data }: any) {
-  return (
-    <LayoutComponent seo={data.team.seoMetaTags} name="team">
-        <React.Fragment>
-            <CoverComponent big={false} title={data.team.name} image={data.team.cover.sizes} />
-            <div className="page__content container">
-                <div className="row">
-                    <div className="col-md-8 mb-5 mb-md-0">
-                        <div className="page_team__images">
-                            <ImageComponent className="" image={data.team.cover.sizes} />
+
+    const renderLine = (text: string, title: string) : React.ReactElement<any> => {
+        if (text) {
+            return (
+                <React.Fragment>
+                    <h4>{title}</h4>
+                    <p>{text}</p>
+                </React.Fragment>
+            );
+        }
+
+        return (<React.Fragment></React.Fragment>);
+    };
+
+    return (
+        <LayoutComponent seo={data.team.seoMetaTags} name="team">
+            <React.Fragment>
+                <CoverComponent big={false} title={data.team.name} image={data.team.cover.sizes} />
+                <div className="page__content container">
+                    <div className="row">
+                        <div className="col-md-8 mb-5 mb-md-0">
+                            <div className="page_team__images">
+                                <ImageComponent className="" image={data.team.cover.sizes} />
+                            </div>
+                            <TitleComponent balise="h2" text="Effectif" />
+                            {renderLine(data.team.first_line, "Rang debout de gauche à droite")}
+                            {renderLine(data.team.second_line, "Rang assis de gauche à droite")}
                         </div>
-                        <TitleComponent balise="h2" text="Effectif" />
-                        <h4>2ème rang de Gauche à droite</h4>
-                        <p>Jean Noel Roinet, Jean-Christophe Tricot, Alain Chauvin, MAxime Chevreux, Jean-Philippe Bruant, Julien Godrefroy, Antoine Chevreux, François Martineau, Valentin Geslin, Jean-Luc Gaulin</p>
-                        <h4>1er rang de Gauche à droite</h4>
-                        <p>Jean Noel Roinet, Jean-Christophe Tricot, Alain Chauvin, MAxime Chevreux, Jean-Philippe Bruant, Julien Godrefroy, Antoine Chevreux, François Martineau, Valentin Geslin, Jean-Luc Gaulin</p>
+                        <aside className="col-md-3 offset-md-1">
+                            <AsideComponent text="Dirigeant" link="" className="manager">
+                                <React.Fragment />
+                            </AsideComponent>
+                            <AsideComponent text="Classement" link="" className="classement">
+                                <ButtonComponent active={true} className="" link="/" type={1} event={() => {}}><React.Fragment>Voir le classement</React.Fragment></ButtonComponent>
+                            </AsideComponent>
+                        </aside>
                     </div>
-                    <aside className="col-md-3 offset-md-1">
-                        <AsideComponent text="Dirigeant" link="" className="manager">
-                            <React.Fragment />
-                        </AsideComponent>
-                        <AsideComponent text="Classement" link="" className="classement">
-                            <ButtonComponent active={true} className="" link="/" type={1} event={() => {}}><React.Fragment>Voir le classement</React.Fragment></ButtonComponent>
-                        </AsideComponent>
-                    </aside>
                 </div>
-            </div>
-        </React.Fragment>
-    </LayoutComponent>
-  )
+            </React.Fragment>
+        </LayoutComponent>
+    );
 }
