@@ -11,13 +11,13 @@ interface ITeamArticleProps {
 
 export function TeamArticleComponent({ team }: ITeamArticleProps) {
     return (
-        <div className="team_article">
+        <article className="team_article">
             <Link to={`${team.slug}`}>
                 <ImageComponent className="" image={team.cover.sizes}  />
                 <p className="text_division team_article__division">{team.division}</p>
-                <h3>{team.name}</h3> 
+                <h3 className="full">{team.name}</h3> 
                 <p className="team_article__manager">Dirigé par <span>{team.manager.name} {team.manager.surname}</span></p>
             </Link>
-        </div>
+        </article>
     );
 };

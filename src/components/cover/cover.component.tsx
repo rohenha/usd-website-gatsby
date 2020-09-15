@@ -5,6 +5,7 @@ import "./cover.component.sass";
 
 interface ICoverComponentProps {
     title: string,
+    subtitle: string,
     big: boolean,
     image: {
         srcSet: string,
@@ -17,13 +18,19 @@ interface ICoverComponentProps {
     }
 }
 
-export function CoverComponent({ big, title, image }: ICoverComponentProps) {
+export function CoverComponent({ big, title, image, subtitle }: ICoverComponentProps) {
     
     return (
         <section className={big ? "cover cover--big" : "cover"} style={{ backgroundImage: "url(" + image.src + ")" }}>
             <div className="cover__decoration"></div>
             <div className="container">
-                <TitleComponent balise="h1" text={title} />
+                <div className="cover__content">
+                    <TitleComponent balise="h1" text={title} />
+                    {subtitle !== "" ?
+                        <h4 className="cover__subtitle"><span>{subtitle}</span></h4>:
+                        null
+                    }
+                </div>
             </div>
             <div className="cover__scroller"></div>
         </section>

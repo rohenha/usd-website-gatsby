@@ -21,7 +21,7 @@ export interface ITeam extends ITeamMenu {
 
 export interface ITeamPage extends ITeam {
     managers: IManager[],
-    link_fff: string,
+    linkFff: string,
     seoMetaTags: {
         tags: ISEOTag[]
     }

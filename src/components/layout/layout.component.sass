@@ -1,9 +1,22 @@
 .page
-    &_teams
-        h2
-            &:not(:first-child)
-                margin-top: 60px
 
-    &_team
-        &__images
-            margin-bottom: 60px
+    &__container
+        padding-bottom: 90px
+        padding-top: 90px
+
+    &__main
+        margin-bottom: 150px
+
+    &__section
+        &:not(:last-child)
+            margin-bottom: 100px
+
+    &_contact
+        &__email
+            display: block
+            margin-top: 50px
+
+
+    @include media-breakpoint-up(md)
+        &__main
+            margin-bottom: 0

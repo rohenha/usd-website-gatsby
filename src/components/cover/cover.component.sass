@@ -44,10 +44,42 @@
     &--big
         padding: 240px 0 180px
 
+    &__content
+        display: inline-block
+
     .title
+        &:not(:last-child)
+            margin-bottom: 10px
         &::after
             right: 50%
             transform: translate(50%, 0)
+
+    &__subtitle
+        color: $color-white
+        padding: 7px 20px
+        position: relative
+        text-align: center
+        width: 100%
+        span
+            position: relative
+            z-index: 2
+        &::before
+            background-color: $color-3
+            content: ""
+            display: block
+            height: 100%
+            left: 0
+            opacity: .7
+            position: absolute
+            top: 0
+            transform: skewX(-16deg)
+            width: 100%
+            z-index: 1
+        // @supports (-webkit-text-stroke: 1px $color-white)
+        //     -webkit-text-fill-color: rgba($color-white, 0)
+        //     -webkit-text-stroke: 1px $color-white
+        //     color: rgba($color-white, 0)
+        
 
     .container
         position: relative

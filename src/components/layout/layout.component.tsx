@@ -36,8 +36,8 @@ export function LayoutComponent({ children, seo, name }: ILayoutComponentProps) 
                                 }
                             }
                         }
-                        partners: allDatoCmsPartner {
-                            nodes {
+                        partners: datoCmsOrderPartner {
+                            partenaires {
                                 name
                                 website
                                 logo {

@@ -69,12 +69,12 @@ export default function Teams({ data }: any) {
     return (
         <LayoutComponent seo={data.page.seoMetaTags} name="teams">
             <React.Fragment>
-                <CoverComponent big={false} title={data.page.title} image={data.page.cover.sizes} />
+                <CoverComponent big={false} title={data.page.title} image={data.page.cover.sizes} subtitle="" />
                 <div className="page__content container">
                     {getTeamsInCategories(data.categoriesOrder.categories, data.teams.nodes).map((element: IteamsByCategorie, index: number) => {
                         if (element.teams.length > 0) {
                             return (
-                                <React.Fragment key={index}>
+                                <section className="page_teams__section page__section" key={index}>
                                     <TitleComponent balise="h2" text={element.category.name} />
                                     <ul className="row">
                                         {element.teams.map((team: ITeam, index: number) => (
@@ -83,7 +83,7 @@ export default function Teams({ data }: any) {
                                             </div>
                                         ))}
                                     </ul>
-                                </React.Fragment>
+                                </section>
                             );
                         } else {
                             return null;

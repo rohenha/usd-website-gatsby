@@ -10,7 +10,7 @@ import {
     TitleComponent,
     ImageComponent
 } from "Components";
-import { IProduct, ITeamHome, ITeam, IPageCurrent, IPage } from "Interfaces";
+import { IProduct, ITeamHome, IPageCurrent, IPage } from "Interfaces";
 
 interface IHomePageProps {
     data: {
@@ -71,14 +71,14 @@ export default function Home({ data }: IHomePageProps) {
     return (
         <LayoutComponent seo={data.page.seoMetaTags} name="home" >
             <React.Fragment>
-                <CoverComponent big={true} title={data.page.title} image={data.page.cover.sizes} />
-                <div className="page__content container">
+                <CoverComponent big={true} title={data.page.title} image={data.page.cover.sizes} subtitle="" />
+                <div className="page__container container">
                     <div className="row">
-                        <div className="col-md-8 mb-5 mb-md-0">
+                        <div className="col-md-8 page__main">
                             <TitleComponent balise="h2" text="Actualité" />
                             <FacebookPostsContainerComponent />
                         </div>
-                        <aside className="col-md-3 offset-md-1">
+                        <aside className="col-md-4">
                             <AsideComponent text="Équipes" link="/equipes" className="teams">
                                 <ul>
                                     {data.teams.nodes.map((team: ITeamHome, index: number) => (
@@ -98,7 +98,7 @@ export default function Home({ data }: IHomePageProps) {
                                         <ul>
                                         {data.products.nodes.map((product: IProduct, index: number) => (
                                             <li key={index}><Link to={"boutique/" + product.slug}>
-                                                <ImageComponent image={product.cover.sizes} /></Link>
+                                                <ImageComponent className="" image={product.cover.sizes} /></Link>
                                             </li>
                                         )) }
                                         </ul>

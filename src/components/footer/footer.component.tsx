@@ -26,7 +26,7 @@ interface IFooterComponentProps {
             facebookPageUrl: string
         }
         partners: {
-            nodes : IPartner[]
+            partenaires : IPartner[]
         }
     }
 }
@@ -34,7 +34,7 @@ interface IFooterComponentProps {
 export function FooterComponent({ data }: IFooterComponentProps) {
     return (
         <React.Fragment>
-            <PartnersComponent partners={data.partners.nodes} />
+            <PartnersComponent partners={data.partners.partenaires} />
             <footer className="footer">
                 <div className="container">
                     <div className="footer__nav row">

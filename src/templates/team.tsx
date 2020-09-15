@@ -1,7 +1,8 @@
 import React from "react";
 import { graphql } from "gatsby";
-import { AsideComponent, ButtonComponent, CoverComponent, LayoutComponent, ImageComponent, TitleComponent } from "Components";
-
+import { AsideComponent, ButtonComponent, CoverComponent, LayoutComponent, ImageComponent, TitleComponent, ManagerComponent } from "Components";
+import Slider from "react-slick";
+import { IImage } from "Interfaces";
 // interface IHomePageProps {
 //   data: {
 //       page: IPageCurrent,
@@ -30,6 +31,11 @@ export const query = graphql`
             managers {
                 ...managerFragment
             }
+            images {
+                ...coverFragment
+            }
+            linkFff
+            division
             firstLine
             secondLine
             seoMetaTags {
@@ -57,24 +63,40 @@ export default function Team({ data }: any) {
     return (
         <LayoutComponent seo={data.team.seoMetaTags} name="team">
             <React.Fragment>
-                <CoverComponent big={false} title={data.team.name} image={data.team.cover.sizes} />
-                <div className="page__content container">
+                <CoverComponent big={false} title={data.team.name} image={data.team.cover.sizes} subtitle={data.team.division} />
+                <div className="page__container container">
                     <div className="row">
-                        <div className="col-md-8 mb-5 mb-md-0">
-                            <div className="page_team__images">
-                                <ImageComponent className="" image={data.team.cover.sizes} />
+                        <div className="col-md-8 page__main">
+                            <div className="page_team__images page__section">
+                                <Slider {...{
+                                    dots: true,
+                                    infinite: true,
+                                    speed: 500,
+                                    slidesToShow: 1,
+                                    slidesToScroll: 1
+                                }}>
+                                    <ImageComponent className="" image={data.team.cover.sizes} />
+                                    {data.team.images.map((image: IImage, index: number) => (
+                                        <ImageComponent key={index} className="" image={image.sizes} />
+                                    ))}
+                                </Slider>
                             </div>
                             <TitleComponent balise="h2" text="Effectif" />
                             {renderLine(data.team.firstLine, "Rang debout de gauche à droite")}
                             {renderLine(data.team.secondLine, "Rang assis de gauche à droite")}
                         </div>
-                        <aside className="col-md-3 offset-md-1">
-                            <AsideComponent text="Dirigeant" link="" className="manager">
-                                <React.Fragment />
+                        <aside className="col-md-4">
+                            <AsideComponent text="Entraîneur" link="" className="manager">
+                                <React.Fragment>
+                                    <ManagerComponent manager={data.team.manager} />
+                                </React.Fragment>
                             </AsideComponent>
-                            <AsideComponent text="Classement" link="" className="classement">
-                                <ButtonComponent active={true} className="" link="/" type={1} event={() => {}}><React.Fragment>Voir le classement</React.Fragment></ButtonComponent>
-                            </AsideComponent>
+                            {data.team.linkFff ? 
+                                <AsideComponent text="Classement" link="" className="classement">
+                                    <ButtonComponent active={true} className="" link={data.team.linkFff} type={1} event={() => {}}><React.Fragment>Voir le classement</React.Fragment></ButtonComponent>
+                                </AsideComponent> :
+                                null
+                            }
                         </aside>
                     </div>
                 </div>
