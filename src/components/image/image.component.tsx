@@ -2,7 +2,7 @@ import * as React from 'react';
 import { IImage } from "Interfaces";
 
 interface IImageComponentProps {
-    className: string,
+    className?: string,
     image: IImage
 }
 

@@ -1,0 +1,37 @@
+.product
+    font-size: 0
+    text-align: center
+    h4
+        margin-bottom: 0
+    a
+        display: inline-block
+        font-size: 0
+        line-height: 0
+
+    &__image
+        border: 2px solid $color-4
+        border-radius: 5px
+        &:not(:last-child)
+            margin-bottom: 10px
+
+    &__price
+        background-color: $color-3
+        display: inline-block
+        padding: 4px 15px
+        transform: skew(-20deg)
+        span
+            display: inline-block
+            transform: skew(20deg)
+
+    &__sizes
+        margin-bottom: 15px
+        span
+            color: $color-2
+            display: inline-block
+            &:not(:last-child)
+                &::after
+                    color: $color-1
+                    content: "/"
+                    display: inline-block
+                    font-weight: bold
+                    margin: 0 5px

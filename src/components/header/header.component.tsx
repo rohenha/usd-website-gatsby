@@ -58,7 +58,7 @@ export class HeaderComponent extends React.Component<IHeaderComponentProps, IHea
                                 <button className="header__mobile header__close" onClick={this.toggleNav}><span/></button>
                             </li>
                             <li>
-                                <Link className="text_menu" to="/equipes">Équipes</Link>
+                                <Link className="text_menu" to="/equipes" activeClassName="active">Équipes</Link>
                                 <ul className="header__dropdown">
                                    {this.teamsByCategorie.map((element: IteamsByCategorie, index: number) => {
                                        if (element.teams.length > 0) {
@@ -80,10 +80,10 @@ export class HeaderComponent extends React.Component<IHeaderComponentProps, IHea
                                    })} 
                                 </ul>
                             </li>
-                            <li><Link className="text_menu" to="/medias">Médias</Link></li>
-                            <li><Link className="text_menu" to="/contact">Contact</Link></li>
-                            <li className="header__el_left"><Link className="text_menu" to="/boutique">Boutique</Link></li>
-                            <li><Link className="text_menu" to="/mon-club">Mon club</Link></li>
+                            <li><Link className="text_menu" to="/medias" activeClassName="active">Médias</Link></li>
+                            <li className="header__el_left"><Link className="text_menu" to="/boutique" activeClassName="active">Boutique</Link></li>
+                            <li><Link className="text_menu" to="/contact" activeClassName="active">Contact</Link></li>
+                            {/* <li><Link className="text_menu" to="/mon-club" activeClassName="active">Mon club</Link></li> */}
                         </ul>
                     </nav>
                     <Link to="/" className="header__logo"><img src={this.props.data.logo.sizes.src} srcSet={this.props.data.logo.sizes.srcSet} sizes={this.props.data.logo.sizes.sizes} alt="" title={this.props.data.site.siteName} /></Link>

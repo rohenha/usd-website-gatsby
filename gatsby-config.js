@@ -1,4 +1,5 @@
-require('dotenv').config()
+var autoprefixer = require('autoprefixer');
+require('dotenv').config();
 
 module.exports = {
   plugins: [
@@ -7,7 +8,7 @@ module.exports = {
     {
       resolve: `gatsby-plugin-env-variables`,
       options: {
-        allowList: ["FACEBOOK_GRAPH_TOKEN"]
+        allowList: ["FACEBOOK_GRAPH_TOKEN", "FACEBOOK_APP_ID"]
       },
     },
     {
@@ -25,7 +26,7 @@ module.exports = {
     {
       resolve: `gatsby-plugin-postcss`,
       options: {
-        postCssPlugins: ['autoprefixer'],
+        postCssPlugins: [autoprefixer()],
       },
     },
   ]

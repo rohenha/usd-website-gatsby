@@ -1,54 +1,82 @@
 import React from "react";
 import { graphql } from "gatsby";
-import { LayoutComponent } from "Components";
+import { AsideComponent, CoverComponent, LayoutComponent, ProductComponent } from "Components";
+import ReactMarkdown from "react-markdown";
+import { IImage, IProduct, ISEOTag } from "Interfaces";
 
-// interface IHomePageProps {
-//   data: {
-//       page: IPageCurrent,
-//       teamsPage: IPage,
-//       shopPage: IPage,
-//       mediasPage: IPage,
-//       products: {
-//           nodes: IProduct[]
-//       },
-//       teams: {
-//           nodes: ITeam[]
-//       }
-//   }
-// }
+interface IShopPageProps {
+  data: {
+      page: {
+        seoMetaTags: {
+          tags: ISEOTag[]
+        },
+        title: string,
+        shopFile: {
+            url: string
+        }
+        description: string,
+        cover: {
+            sizes: IImage
+        }
+      },
+      products: {
+          nodes: IProduct[]
+      }
+  }
+}
 
 export const query = graphql`
-    query ShopPage {
+  query ShopPage {
     products: allDatoCmsProduct {
-        nodes {
-            ...productWithImageFragment
-            sizes {
-                name
-            }
-        }
+      nodes {
+          ...productWithImageFragment
+          sizes {
+              name
+          }
+      }
     }
     page: datoCmsShopPage {
-        title
-        shopFile {
-            url
-        }
-        seoMetaTags {
-          tags
-        }
-        cover {
-            ...coverFragment
-        }
+      title
+      shopFile {
+          url
+      }
+      description
+      seoMetaTags {
+        tags
+      }
+      cover {
+          ...coverFragment
+      }
     }
   }
 `;
 
-export default function Shop({ data }: any) {
+export default function Shop({ data }: IShopPageProps) {
   return (
     <LayoutComponent seo={data.page.seoMetaTags} name="shop">
       <React.Fragment>
-        <p>Page : {JSON.stringify(data.page, null, 2)}</p>
-        <br/>
-        <p>Produits : {JSON.stringify(data.products, null, 2)}</p>
+        <CoverComponent title={data.page.title} image={data.page.cover.sizes} subtitle="" />
+        <div className="page__container container">
+            <div className="row">
+                <div className="col-md-8 page__main">
+                  <div className="page__section">
+                    <ReactMarkdown source={data.page.description} />
+                  </div>
+                  <ul className="row">
+                    {data.products.nodes.map((product: IProduct, index: number) => (
+                        <li className="col-6 col-md-3" key={index}>
+                          <ProductComponent product={product} text price sizes />
+                        </li>
+                    )) }
+                  </ul>
+                </div>
+                <aside className="col-md-4">
+                    <AsideComponent text="Bon de commande" link="" className="shop">
+                        <a className="button button--primary" href={data.page.shopFile.url} target="_blank" download><span>télécharger le bon</span></a>
+                    </AsideComponent>
+                </aside>
+            </div>
+        </div>
       </React.Fragment>
     </LayoutComponent>
   )

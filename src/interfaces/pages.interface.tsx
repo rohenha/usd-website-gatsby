@@ -9,7 +9,9 @@ export interface IPageCurrent extends IPage {
     seoMetaTags: {
         tags: ISEOTag[]
     },
-    cover: IImage
+    cover: {
+        sizes: IImage
+    }
 }
 
 export interface IContact extends IPageCurrent {

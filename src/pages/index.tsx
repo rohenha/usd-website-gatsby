@@ -8,15 +8,29 @@ import {
     FacebookPostsContainerComponent,
     LayoutComponent,
     TitleComponent,
-    ImageComponent
+    ProductComponent
 } from "Components";
-import { IProduct, ITeamHome, IPageCurrent, IPage } from "Interfaces";
+import { IProduct, ITeamHome, IPage, ISEOTag, IImage } from "Interfaces";
 
 interface IHomePageProps {
     data: {
-        page: IPageCurrent,
+        page: {
+            seoMetaTags: {
+                tags: ISEOTag[]
+            },
+            title: string,
+            cover: {
+                sizes: IImage
+            }
+        },
         teamsPage: IPage,
-        shopPage: IPage,
+        shopPage: {
+            title: string,
+            homeDescription: string,
+            shopFile: {
+                url: string
+            }
+        },
         mediasPage: IPage,
         products: {
             nodes: IProduct[]
@@ -48,7 +62,10 @@ export const query = graphql`
         }
         shopPage: datoCmsShopPage {
             title
-            description
+            homeDescription
+            shopFile {
+                url
+            }
         }
         mediasPage: datoCmsShopPage {
             title
@@ -71,7 +88,7 @@ export default function Home({ data }: IHomePageProps) {
     return (
         <LayoutComponent seo={data.page.seoMetaTags} name="home" >
             <React.Fragment>
-                <CoverComponent big={true} title={data.page.title} image={data.page.cover.sizes} subtitle="" />
+                <CoverComponent big title={data.page.title} image={data.page.cover.sizes} />
                 <div className="page__container container">
                     <div className="row">
                         <div className="col-md-8 page__main">
@@ -89,20 +106,21 @@ export default function Home({ data }: IHomePageProps) {
                             <AsideComponent text="Médias" link="/medias" className="medias">
                                 <React.Fragment>
                                     {/* <FacebookMediasContainerComponent number={16} loadMore={false} /> */}
-                                    <ButtonComponent active={true} className="aside_section__link" link="/medias" type={2} event={() => {}}><React.Fragment>Voir plus de médias</React.Fragment></ButtonComponent>
+                                    <ButtonComponent active className="aside_section__link" link="/medias" type={2}><React.Fragment>Voir plus de médias</React.Fragment></ButtonComponent>
                                 </React.Fragment>
                             </AsideComponent>
-                            <AsideComponent text="Boutique" link="/boutique" className="shop">
+                            <AsideComponent text="Boutique" link="" className="shop">
                                     <React.Fragment>
-                                        <p>{data.shopPage.description}</p>
-                                        <ul>
-                                        {data.products.nodes.map((product: IProduct, index: number) => (
-                                            <li key={index}><Link to={"boutique/" + product.slug}>
-                                                <ImageComponent className="" image={product.cover.sizes} /></Link>
-                                            </li>
-                                        )) }
+                                        <p>{data.shopPage.homeDescription}</p>
+                                        <a className="button button--primary" href={data.shopPage.shopFile.url} download><span>Bon de commande</span></a>
+                                        <ul className="row">
+                                            {data.products.nodes.map((product: IProduct, index: number) => (
+                                                <li key={index} className="col-4">
+                                                    <ProductComponent product={product} />
+                                                </li>
+                                            )) }
                                         </ul>
-                                        <ButtonComponent active={true} className="aside_section__link" link="/boutique" type={2} event={() => {}}><React.Fragment>Voir la boutique</React.Fragment></ButtonComponent>
+                                        <ButtonComponent active className="aside_section__link" link="/boutique" type={2} ><React.Fragment>Voir la boutique</React.Fragment></ButtonComponent>
                                     </React.Fragment>
                             </AsideComponent>
                         </aside>

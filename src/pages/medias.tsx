@@ -1,6 +1,6 @@
 import React from "react";
 import { graphql } from "gatsby";
-import { LayoutComponent } from "Components";
+import { CoverComponent, LayoutComponent, FacebookMediasContainerComponent } from "Components";
 import { IPageCurrent } from "Interfaces";
 
 interface IMediasPageProps {
@@ -27,7 +27,8 @@ export default function Medias({ data }: IMediasPageProps) {
     return (
         <LayoutComponent seo={data.page.seoMetaTags} name="medias">
             <React.Fragment>
-                <p>Page : {JSON.stringify(data.page, null, 2)}</p>
+                <CoverComponent title={data.page.title} image={data.page.cover.sizes} />
+                {/* <FacebookMediasContainerComponent number={4} /> */}
             </React.Fragment>
         </LayoutComponent>
     );

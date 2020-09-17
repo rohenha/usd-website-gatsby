@@ -5,10 +5,10 @@ import "./button.component.sass";
 
 interface IButtonProps {
     active: boolean,
-    link: string,
-    className: string,
+    link?: string,
+    className?: string,
     type: number,
-    event: () => void | null,
+    event?: () => void | null,
     children: React.ReactElement<any>
 }
 

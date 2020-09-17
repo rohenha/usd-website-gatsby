@@ -126,13 +126,23 @@ button
             -webkit-text-stroke: 1px $color-3
             color: rgba($color-white, 0)
 
+        &.active
+            @supports (-webkit-text-stroke: 1px $color-3)
+                -webkit-text-fill-color: $color-3
+
         &_title
             color: $color-white
             font-size: px2rem(20)
             letter-spacing: ls2rem(2.45)
             line-height: px2rem(25)
 
-    // &_division
+    &_product
+        &_sizes
+            font-size: px2rem(10)
+
+        &_price
+            color: $color-white
+            font-weight: bold
 
 
 

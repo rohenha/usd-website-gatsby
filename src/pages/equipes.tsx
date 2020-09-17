@@ -2,26 +2,27 @@ import React from "react";
 import { graphql } from "gatsby";
 import { CoverComponent, LayoutComponent, TeamArticleComponent, TitleComponent } from "Components";
 import { getTeamsInCategories } from "Services";
-import { IteamsByCategorie, ITeam } from "Interfaces";
-// import { IPageCurrent, ITeam } from "Interfaces";
+import { ICategory, IteamsByCategorie, ITeam, ISEOTag, IImage } from "Interfaces";
 
-// interface ITeamsPageProps {
-//     data: {
-//         page: IPageCurrent,
-//         teams: {
-//             nodes: {
-//                 name: string,
-//                 slug: string,
-//                 category: ICategory,
-//                 team: string,
-//                 managers: {
-//                     name: string,
-//                     surname: string
-//                 }
-//             }
-//         }
-//     }
-// }
+interface ITeamsPageProps {
+    data: {
+        page: {
+            seoMetaTags: {
+                tags: ISEOTag[]
+            },
+            title: string,
+            cover: {
+                sizes: IImage
+            }
+        },
+        categoriesOrder: {
+            categories: ICategory[]
+        },
+        teams: {
+            nodes: ITeam[]
+        }
+    }
+}
 
 
 export const query = graphql`
@@ -65,12 +66,12 @@ export const query = graphql`
     }
 `;
 
-export default function Teams({ data }: any) {
+export default function Teams({ data }: ITeamsPageProps) {
     return (
         <LayoutComponent seo={data.page.seoMetaTags} name="teams">
             <React.Fragment>
-                <CoverComponent big={false} title={data.page.title} image={data.page.cover.sizes} subtitle="" />
-                <div className="page__content container">
+                <CoverComponent title={data.page.title} image={data.page.cover.sizes} subtitle="" />
+                <div className="page__container container">
                     {getTeamsInCategories(data.categoriesOrder.categories, data.teams.nodes).map((element: IteamsByCategorie, index: number) => {
                         if (element.teams.length > 0) {
                             return (
@@ -94,8 +95,3 @@ export default function Teams({ data }: any) {
         </LayoutComponent>
     );
 };
-{/* <React.Fragment>
-    <p>Teams : {JSON.stringify(data.teams, null, 2)}</p>
-    <br/>
-    <p>Page : {JSON.stringify(data.page, null, 2)}</p>
-</React.Fragment> */}

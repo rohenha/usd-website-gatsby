@@ -32,7 +32,7 @@ export function getTeamsByCategories(category: ICategory, teams: ITeam[]) {
 export function renderLink(team: ITeamMenu, index: number, attribute: string, className: string) {
     return (
         <li key={index}>
-            <Link className={`text_menu ${className}`} to={"/equipes/" + team.slug}>
+            <Link className={`text_menu ${className}`} to={"/equipes/" + team.slug} activeClassName="active">
                 {team[attribute]}
             </Link>
         </li>

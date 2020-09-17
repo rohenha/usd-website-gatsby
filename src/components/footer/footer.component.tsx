@@ -44,9 +44,8 @@ export function FooterComponent({ data }: IFooterComponentProps) {
                                 <li><Link className="text_menu" to="/">Accueil</Link></li>
                                 <li><Link className="text_menu" to="/equipes">Équipes</Link></li>
                                 <li><Link className="text_menu" to="/medias">Médias</Link></li>
-                                <li><Link className="text_menu" to="/contact">Contact</Link></li>
                                 <li><Link className="text_menu" to="/boutique">Boutique</Link></li>
-                                <li><Link className="text_menu" to="/mon-club">Mon club</Link></li>
+                                <li><Link className="text_menu" to="/contact">Contact</Link></li>
                             </ul>
                             <ul>
                                 <li>

@@ -2,21 +2,13 @@ import React from "react";
 import { graphql } from "gatsby";
 import { AsideComponent, ButtonComponent, CoverComponent, LayoutComponent, ImageComponent, TitleComponent, ManagerComponent } from "Components";
 import Slider from "react-slick";
-import { IImage } from "Interfaces";
-// interface IHomePageProps {
-//   data: {
-//       page: IPageCurrent,
-//       teamsPage: IPage,
-//       shopPage: IPage,
-//       mediasPage: IPage,
-//       products: {
-//           nodes: IProduct[]
-//       },
-//       teams: {
-//           nodes: ITeam[]
-//       }
-//   }
-// }
+import { IImage, ITeamPage } from "Interfaces";
+
+interface ITeamPageProps {
+    data: {
+        team: ITeamPage
+    }
+}
 
 export const query = graphql`
     query TeamPage($slug: String!) {
@@ -45,7 +37,7 @@ export const query = graphql`
     }
 `;
 
-export default function Team({ data }: any) {
+export default function Team({ data }: ITeamPageProps) {
 
     const renderLine = (text: string, title: string) : React.ReactElement<any> => {
         if (text) {
@@ -63,7 +55,7 @@ export default function Team({ data }: any) {
     return (
         <LayoutComponent seo={data.team.seoMetaTags} name="team">
             <React.Fragment>
-                <CoverComponent big={false} title={data.team.name} image={data.team.cover.sizes} subtitle={data.team.division} />
+                <CoverComponent title={data.team.name} image={data.team.cover.sizes} subtitle={data.team.division} />
                 <div className="page__container container">
                     <div className="row">
                         <div className="col-md-8 page__main">
@@ -76,7 +68,7 @@ export default function Team({ data }: any) {
                                     slidesToScroll: 1
                                 }}>
                                     <ImageComponent className="" image={data.team.cover.sizes} />
-                                    {data.team.images.map((image: IImage, index: number) => (
+                                    {data.team.images.map((image: { sizes: IImage}, index: number) => (
                                         <ImageComponent key={index} className="" image={image.sizes} />
                                     ))}
                                 </Slider>

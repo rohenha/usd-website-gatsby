@@ -5,8 +5,8 @@ import "./cover.component.sass";
 
 interface ICoverComponentProps {
     title: string,
-    subtitle: string,
-    big: boolean,
+    subtitle?: string,
+    big?: boolean,
     image: {
         srcSet: string,
         sizes: string,
@@ -26,7 +26,7 @@ export function CoverComponent({ big, title, image, subtitle }: ICoverComponentP
             <div className="container">
                 <div className="cover__content">
                     <TitleComponent balise="h1" text={title} />
-                    {subtitle !== "" ?
+                    {subtitle && subtitle !== "" ?
                         <h4 className="cover__subtitle"><span>{subtitle}</span></h4>:
                         null
                     }

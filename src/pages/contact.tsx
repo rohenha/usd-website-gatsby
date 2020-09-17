@@ -3,23 +3,37 @@ import { graphql } from "gatsby";
 import { AsideComponent, CoverComponent, ImageComponent, LayoutComponent, ManagerComponent, TitleComponent } from "Components";
 import ReactMarkdown from "react-markdown";
 import Slider from "react-slick";
-import { Map, Marker, Popup, TileLayer } from 'react-leaflet';
-import { IImage } from "Interfaces";
+import { Map, Marker, TileLayer } from 'react-leaflet';
+import { IImage, IManager, ISEOTag } from "Interfaces";
+import { LatLngExpression } from "leaflet";
 
-// interface IHomePageProps {
-//     data: {
-//         page: IPageCurrent,
-//         teamsPage: IPage,
-//         shopPage: IPage,
-//         mediasPage: IPage,
-//         products: {
-//             nodes: IProduct[]
-//         },
-//         teams: {
-//             nodes: ITeam[]
-//         }
-//     }
-// }
+import 'leaflet/dist/leaflet.css';
+
+interface IContactPageProps {
+    data: {
+        page: {
+            title: string,
+            description: string,
+            cover: {
+                sizes: IImage,
+            },
+            seoMetaTags: {
+                tags: ISEOTag[]
+            },
+            email: string,
+            coversStade: {
+                sizes: IImage,
+            }[],
+            president: IManager,
+            presidentJeunes: IManager,
+            localisation: {
+                latitude: number,
+                longitude: number
+            },
+            adresse: string
+        },
+    }
+}
 
 
 export const query = graphql`
@@ -54,12 +68,13 @@ export const query = graphql`
     }
 `;
 
-export default function Contact({ data }: any) {
-    const position = [data.page.localisation.latitude, data.page.localisation.longitude];
+export default function Contact({ data }: IContactPageProps) {
+    const position: LatLngExpression = [data.page.localisation.latitude, data.page.localisation.longitude];
+    // const position: LatLngExpression = [51.5, -0.09];
     return (
         <LayoutComponent seo={data.page.seoMetaTags} name="contact">
             <React.Fragment>
-                <CoverComponent big={false} title={data.page.title} image={data.page.cover.sizes} subtitle="" />
+                <CoverComponent title={data.page.title} image={data.page.cover.sizes} subtitle="" />
                 <div className="page__container container">
                     <div className="row">
                         <div className="col-md-8 page__main">
@@ -88,22 +103,20 @@ export default function Contact({ data }: any) {
                                         slidesToShow: 1,
                                         slidesToScroll: 1
                                     }}>
-                                        {data.page.coversStade.map((image: IImage, index: number) => (
+                                        {data.page.coversStade.map((image: { sizes: IImage}, index: number) => (
                                             <ImageComponent key={index} className="" image={image.sizes} />
                                         ))}
                                     </Slider>
                                     <address>
                                         <ReactMarkdown source={data.page.adresse} />
                                     </address>
-                                    {/* <Map center={position} zoom={13}>
+                                    <Map center={position} zoom={13}>
                                         <TileLayer
-                                        url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
-                                        attribution="&copy; <a href=&quot;http://osm.org/copyright&quot;>OpenStreetMap</a> contributors"
+                                            url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
+                                            attribution="&copy; <a href=&quot;http://osm.org/copyright&quot;>OpenStreetMap</a> contributors"
                                         />
-                                        <Marker position={position}>
-                                        <Popup>A pretty CSS3 popup.<br />Easily customizable.</Popup>
-                                        </Marker>
-                                    </Map> */}
+                                        <Marker position={position}/>
+                                    </Map>
                                 </React.Fragment>
                             </AsideComponent>
                         </aside>

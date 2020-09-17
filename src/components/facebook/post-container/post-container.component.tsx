@@ -23,7 +23,7 @@ export class FacebookPostsContainerComponent extends React.Component<IFacebookPo
         };
     };
 
-    private getPosts = () => {
+    private getPosts = (): void => {
         this.setState({ loading: true });
         getFacebookContent("posts.limit(" + this.nbrPosts + ").offset(" + this.offset + "){message,full_picture,permalink_url,created_time}").then((res: any) => {
             this.setState({
@@ -33,7 +33,7 @@ export class FacebookPostsContainerComponent extends React.Component<IFacebookPo
         });
     };
 
-    private addMorePosts = () => {
+    private addMorePosts = (): void => {
         this.offset += this.nbrPosts;
         this.getPosts();
     };

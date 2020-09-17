@@ -42,15 +42,15 @@ exports.createPages = ({ graphql, actions }) => {
                     }
                 });
             });
-            result.data.products.edges.map(({ node: product }) => {
-                createPage({
-                    path: `boutique/${product.slug}`,
-                    component: path.resolve("./src/templates/product.tsx"),
-                    context: {
-                        slug: product.slug
-                    }
-                });
-            });
+            // result.data.products.edges.map(({ node: product }) => {
+            //     createPage({
+            //         path: `boutique/${product.slug}`,
+            //         component: path.resolve("./src/templates/product.tsx"),
+            //         context: {
+            //             slug: product.slug
+            //         }
+            //     });
+            // });
             resolve();
         });
     });
