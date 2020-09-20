@@ -110,13 +110,15 @@ export default function Contact({ data }: IContactPageProps) {
                                     <address>
                                         <ReactMarkdown source={data.page.adresse} />
                                     </address>
-                                    <Map center={position} zoom={13}>
-                                        <TileLayer
-                                            url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
-                                            attribution="&copy; <a href=&quot;http://osm.org/copyright&quot;>OpenStreetMap</a> contributors"
-                                        />
-                                        <Marker position={position}/>
-                                    </Map>
+                                    { typeof window !== 'undefined' ?
+                                        <Map center={position} zoom={13}>
+                                            <TileLayer
+                                                url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
+                                                attribution="&copy; <a href=&quot;http://osm.org/copyright&quot;>OpenStreetMap</a> contributors"
+                                            />
+                                            <Marker position={position}/>
+                                        </Map>
+                                    : null }
                                 </React.Fragment>
                             </AsideComponent>
                         </aside>

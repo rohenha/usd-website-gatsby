@@ -15,7 +15,6 @@ interface IFacebookMediasContainerState {
 }
 
 export class FacebookMediasContainerComponent extends React.Component<IFacebookMediasContainerProps, IFacebookMediasContainerState> {
-    private offset: number = 0;
     private constructor(props: IFacebookMediasContainerProps) {
         super(props);
         this.state = {

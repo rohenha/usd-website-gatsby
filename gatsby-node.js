@@ -1,15 +1,41 @@
 const path = require("path");
 const { createFilePath } = require("gatsby-source-filesystem");
 
-exports.onCreateWebpackConfig = ({ stage, actions, plugins }) => {
-    actions.setWebpackConfig({
-      plugins: [
-        plugins.define({
-          'global.GENTLY': false
-        })
-      ]
-    })
-  }
+exports.onCreateWebpackConfig = ({ stage, actions, plugins, loaders }) => {
+    const config = {
+        plugins: [
+            plugins.define({
+                'global.GENTLY': false
+            })
+        ]
+    };
+    if (stage === 'build-html') {
+        config.module = {
+            rules: [
+                {
+                    test: /react-leaflet|leaflet/,
+                    use: loaders.null(),
+                },
+            ],
+        };
+    }
+    actions.setWebpackConfig(config);
+}
+
+// exports.onCreateWebpackConfig = ({ stage, loaders, actions }) => {
+//     if (stage === 'build-html') {
+//       actions.setWebpackConfig({
+//         module: {
+//           rules: [
+//             {
+//               test: /react-leaflet|leaflet/,
+//               use: loaders.null(),
+//             },
+//           ],
+//         },
+//       })
+//     }
+//   }
 
 exports.createPages = ({ graphql, actions }) => {
     const { createPage } = actions;
