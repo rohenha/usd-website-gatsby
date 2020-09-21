@@ -105,7 +105,7 @@ export default function Home({ data }: IHomePageProps) {
                             </AsideComponent>
                             <AsideComponent text="Médias" link="/medias" className="medias">
                                 <React.Fragment>
-                                    {/* <FacebookMediasContainerComponent number={16} loadMore={false} /> */}
+                                    <FacebookMediasContainerComponent number={16} columns={{ mobile: 3, desktop: 3}} />
                                     <ButtonComponent active className="aside_section__link" link="/medias" type={2}><React.Fragment>Voir plus de médias</React.Fragment></ButtonComponent>
                                 </React.Fragment>
                             </AsideComponent>

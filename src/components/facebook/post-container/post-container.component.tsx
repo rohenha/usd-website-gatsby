@@ -8,6 +8,7 @@ import "./post-container.component.sass";
 interface IFacebookPostsContainerProps {}
 
 interface IFacebookPostsContainerState {
+    active: boolean,
     posts: any,
     loading: boolean
 }
@@ -18,6 +19,7 @@ export class FacebookPostsContainerComponent extends React.Component<IFacebookPo
     private constructor(props: IFacebookPostsContainerProps) {
         super(props);
         this.state = {
+            active: true,
             loading: false,
             posts: []
         };
@@ -26,10 +28,16 @@ export class FacebookPostsContainerComponent extends React.Component<IFacebookPo
     private getPosts = (): void => {
         this.setState({ loading: true });
         getFacebookContent("posts.limit(" + this.nbrPosts + ").offset(" + this.offset + "){message,full_picture,permalink_url,created_time}").then((res: any) => {
-            this.setState({
-                loading: false,
-                posts: [...this.state.posts, ...res.posts.data]
-            });
+            if (res && res.posts) {
+                this.setState({
+                    loading: false,
+                    posts: [...this.state.posts, ...res.posts.data]
+                });
+            } else {
+                this.setState({
+                    active: false
+                });
+            }
         });
     };
 
@@ -55,14 +63,16 @@ export class FacebookPostsContainerComponent extends React.Component<IFacebookPo
                             <FacebookPostComponent post={post} key={post.id} />
                         ))}
                 </Masonry>
-                <nav className="fb_nav">
-                    <ButtonComponent active={!this.state.loading} className="" link="" type={1} event={this.addMorePosts}>
-                        <React.Fragment>
-                            {!this.state.loading ? <span>Plus de d'articles</span> : null }
-                            <SpinnerComponent active={this.state.loading} />
-                        </React.Fragment>
-                    </ButtonComponent>
-                </nav>
+                {this.state.active ?
+                    <nav className="fb_nav">
+                        <ButtonComponent active={!this.state.loading} className="" link="" type={1} event={this.addMorePosts}>
+                            <React.Fragment>
+                                {!this.state.loading ? <span>Plus de d'articles</span> : null }
+                                <SpinnerComponent active={this.state.loading} />
+                            </React.Fragment>
+                        </ButtonComponent>
+                    </nav>
+                : null }
             </React.Fragment>
         );
     }

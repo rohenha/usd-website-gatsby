@@ -1,23 +1,30 @@
 import * as React from 'react';
 // import { getFacebookContent } from "Services";
 import { getFacebookContent } from "Services";
-import { FacebookMediaComponent } from "Components";
+import { ButtonComponent, FacebookMediaComponent, SpinnerComponent } from "Components";
+import Masonry from 'react-masonry-component';
+
+import './medias-container.component.sass';
 
 interface IFacebookMediasContainerProps {
     number: number,
-    start: number,
+    columns: { mobile: number, desktop: number },
     loadMore?: boolean
 }
 
 interface IFacebookMediasContainerState {
+    active: boolean,
     medias: any,
-    offset: number
+    offset: number,
+    loading: boolean
 }
 
 export class FacebookMediasContainerComponent extends React.Component<IFacebookMediasContainerProps, IFacebookMediasContainerState> {
     private constructor(props: IFacebookMediasContainerProps) {
         super(props);
         this.state = {
+            active: true,
+            loading: false,
             medias: [],
             offset: this.props.number
         };
@@ -25,9 +32,11 @@ export class FacebookMediasContainerComponent extends React.Component<IFacebookM
 
     private getMedias = () => {
         getFacebookContent("albums{photos{webp_images}}").then((res: any) => {
-            this.setState({
-                medias: [...this.state.medias, ...res.albums.data]
-            });
+            if (res && res.albums) {
+                this.setState({
+                    medias: [...this.state.medias, ...res.albums.data]
+                });
+            }
         });
     };
 
@@ -36,7 +45,7 @@ export class FacebookMediasContainerComponent extends React.Component<IFacebookM
         this.setState({
             offset: newValue
         })
-        // this.getMedias();
+        this.getMedias();
     };
 
     public componentDidMount = this.getMedias;
@@ -44,18 +53,38 @@ export class FacebookMediasContainerComponent extends React.Component<IFacebookM
     public render(): React.ReactElement<any> {
         let nbrPhotos = 0;
         return (
-            <div className="fb_container">
-                {this.state.medias.map((medias: any) => {
-                    if (medias.photos && nbrPhotos < this.state.offset) {
-                        nbrPhotos += 1;
-                        return medias.photos.data.map((photo: any) => (
-                            <FacebookMediaComponent media={photo} key={photo.id} />
-                        )) 
-                    }
-                })}
-                {this.props.loadMore ?
-                    <button onClick={this.getMoreMedias}>Charger plus de médias</button> :
-                    null
+            <div className="fb_medias">
+                <Masonry
+                    className={'fb_medias__container'}
+                    elementType={'section'}
+                    options={{ columnWidth: ".fb_media--size", itemSelector: ".fb_media--container", percentPosition: true }}
+                    disableImagesLoaded={false}
+                    updateOnEachImageLoad={false}
+                    >
+                        <div className={`fb_media--size col-${this.props.columns.mobile} col-md-${this.props.columns.desktop}`}></div>
+                            {this.state.medias.map((medias: any) => {
+                                if (medias.photos) {
+                                    return medias.photos.data.map((photo: any) => {
+                                        if (nbrPhotos < this.state.offset) {
+                                            nbrPhotos += 1;
+                                            return <div className={`col-${this.props.columns.mobile} col-md-${this.props.columns.desktop} fb_media--container`} key={photo.id}><FacebookMediaComponent media={photo} /></div>
+                                        } else {
+                                            return null;
+                                        }
+                                    }) 
+                                }
+                            })}
+                </Masonry>
+                {this.props.loadMore && this.state.active ?
+                    <nav className="fb_nav">
+                        <ButtonComponent active={!this.state.loading} className="" link="" type={1} event={this.getMoreMedias}>
+                            <React.Fragment>
+                                {!this.state.loading ? <span>Plus de de médias</span> : null }
+                                <SpinnerComponent active={this.state.loading} />
+                            </React.Fragment>
+                        </ButtonComponent>
+                    </nav>
+                    : null
                 }
             </div>
         );

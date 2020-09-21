@@ -28,7 +28,7 @@ export default function Medias({ data }: IMediasPageProps) {
         <LayoutComponent seo={data.page.seoMetaTags} name="medias">
             <React.Fragment>
                 <CoverComponent title={data.page.title} image={data.page.cover.sizes} />
-                {/* <FacebookMediasContainerComponent number={4} /> */}
+                <FacebookMediasContainerComponent number={4} loadMore columns={{ mobile: 3, desktop: 3}} />
             </React.Fragment>
         </LayoutComponent>
     );
