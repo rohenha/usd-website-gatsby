@@ -5,7 +5,8 @@ import ReactMarkdown from "react-markdown";
 import Slider from "react-slick";
 import { Map, Marker, TileLayer } from 'react-leaflet';
 import { IImage, IManager, ISEOTag } from "Interfaces";
-import { LatLngExpression, Icon } from "leaflet";
+import { configureLeaflet } from "Services";
+import L from "leaflet";
 
 import 'leaflet/dist/leaflet.css';
 
@@ -69,8 +70,8 @@ export const query = graphql`
 `;
 
 export default function Contact({ data }: IContactPageProps) {
-    const position: LatLngExpression = [data.page.localisation.latitude, data.page.localisation.longitude];
-    // const position: LatLngExpression = [51.5, -0.09];
+    configureLeaflet();
+    const position: L.LatLngExpression = [data.page.localisation.latitude, data.page.localisation.longitude];
     return (
         <LayoutComponent seo={data.page.seoMetaTags} name="contact">
             <React.Fragment>
@@ -116,7 +117,7 @@ export default function Contact({ data }: IContactPageProps) {
                                                 url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
                                                 attribution="&copy; <a href=&quot;http://osm.org/copyright&quot;>OpenStreetMap</a> contributors"
                                             />
-                                            <Marker position={position} icon={pointerIcon} />
+                                            <Marker position={position} />
                                         </Map>
                                     : null }
                                 </React.Fragment>
@@ -129,11 +130,11 @@ export default function Contact({ data }: IContactPageProps) {
     );
 };
 
-const pointerIcon = new Icon({
-    iconUrl: '/icons/pin.svg',
-    iconRetinaUrl: '/icons/pin.svg',
-    iconAnchor: [5, 55],
-    popupAnchor: [10, -44],
-    iconSize: [25, 55],
-    shadowAnchor: [20, 92],
-  })
+// const pointerIcon = new L.Icon({
+//     iconUrl: '/icons/pin.svg',
+//     iconRetinaUrl: '/icons/pin.svg',
+//     iconAnchor: [5, 55],
+//     popupAnchor: [10, -44],
+//     iconSize: [25, 55],
+//     shadowAnchor: [20, 92]
+// });

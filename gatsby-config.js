@@ -29,5 +29,6 @@ module.exports = {
         postCssPlugins: [autoprefixer()],
       },
     },
+    'gatsby-plugin-react-leaflet'
   ]
 }

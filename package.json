@@ -29,6 +29,7 @@
     "gatsby-plugin-env-variables": "^2.0.0",
     "gatsby-plugin-postcss": "^2.3.11",
     "gatsby-plugin-react-helmet": "^3.3.10",
+    "gatsby-plugin-react-leaflet": "^2.0.13",
     "gatsby-plugin-sass": "^2.3.12",
     "gatsby-source-datocms": "^2.4.0",
     "gatsby-source-facebook": "^2.0.1",
