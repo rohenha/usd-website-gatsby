@@ -85,7 +85,7 @@ export default function Team({ data }: ITeamPageProps) {
                             </AsideComponent>
                             {data.team.linkFff ? 
                                 <AsideComponent text="Classement" link="" className="classement">
-                                    <ButtonComponent active={true} className="" link={data.team.linkFff} type={1} event={() => {}}><React.Fragment>Voir le classement</React.Fragment></ButtonComponent>
+                                    <ButtonComponent active link={data.team.linkFff} type={1}><React.Fragment>Voir le classement</React.Fragment></ButtonComponent>
                                 </AsideComponent> :
                                 null
                             }

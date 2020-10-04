@@ -12,10 +12,10 @@ interface IButtonProps {
     children: React.ReactElement<any>
 }
 
-export function ButtonComponent({ active, className, event, link, type, children }: IButtonProps) {
+export function ButtonComponent({ active, className, event, link = "", type, children }: IButtonProps) {
     const classNames = ["primary", "secondary"];
 
-    const setClassName = () => {
+    const setClassName = (): string => {
         return `button button--${classNames[type - 1]} ${className}`;
     }
 

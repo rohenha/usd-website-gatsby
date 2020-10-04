@@ -3,6 +3,7 @@ import * as React from 'react';
 import { getFacebookContent } from "Services";
 import { ButtonComponent, FacebookMediaComponent, SpinnerComponent } from "Components";
 import Masonry from 'react-masonry-component';
+import { IFacebookPhoto } from "Interfaces";
 
 import './medias-container.component.sass';
 
@@ -31,7 +32,7 @@ export class FacebookMediasContainerComponent extends React.Component<IFacebookM
     };
 
     private getMedias = () => {
-        getFacebookContent("albums{photos{webp_images}}").then((res: any) => {
+        getFacebookContent("albums{photos{webp_images,link,name}}").then((res: any) => {
             if (res && res.albums) {
                 this.setState({
                     medias: [...this.state.medias, ...res.albums.data]
@@ -62,17 +63,17 @@ export class FacebookMediasContainerComponent extends React.Component<IFacebookM
                     updateOnEachImageLoad={false}
                     >
                         <div className={`fb_media--size col-${this.props.columns.mobile} col-md-${this.props.columns.desktop}`}></div>
-                            {this.state.medias.map((medias: any) => {
+                            {this.state.medias.map((medias: { photos: { data: IFacebookPhoto[] } }) => {
                                 if (medias.photos) {
-                                    return medias.photos.data.map((photo: any) => {
+                                    return medias.photos.data.map((photo: IFacebookPhoto) => {
                                         if (nbrPhotos < this.state.offset) {
                                             nbrPhotos += 1;
                                             return <div className={`col-${this.props.columns.mobile} col-md-${this.props.columns.desktop} fb_media--container`} key={photo.id}><FacebookMediaComponent media={photo} /></div>
-                                        } else {
-                                            return null;
                                         }
+                                        return;
                                     }) 
                                 }
+                                return;
                             })}
                 </Masonry>
                 {this.props.loadMore && this.state.active ?

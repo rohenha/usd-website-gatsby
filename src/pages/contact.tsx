@@ -5,7 +5,7 @@ import ReactMarkdown from "react-markdown";
 import Slider from "react-slick";
 import { Map, Marker, TileLayer } from 'react-leaflet';
 import { IImage, IManager, ISEOTag } from "Interfaces";
-import { LatLngExpression } from "leaflet";
+import { LatLngExpression, Icon } from "leaflet";
 
 import 'leaflet/dist/leaflet.css';
 
@@ -116,7 +116,7 @@ export default function Contact({ data }: IContactPageProps) {
                                                 url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
                                                 attribution="&copy; <a href=&quot;http://osm.org/copyright&quot;>OpenStreetMap</a> contributors"
                                             />
-                                            <Marker position={position}/>
+                                            <Marker position={position} icon={pointerIcon} />
                                         </Map>
                                     : null }
                                 </React.Fragment>
@@ -128,3 +128,12 @@ export default function Contact({ data }: IContactPageProps) {
         </LayoutComponent>
     );
 };
+
+const pointerIcon = new Icon({
+    iconUrl: '/icons/pin.svg',
+    iconRetinaUrl: '/icons/pin.svg',
+    iconAnchor: [5, 55],
+    popupAnchor: [10, -44],
+    iconSize: [25, 55],
+    shadowAnchor: [20, 92],
+  })
